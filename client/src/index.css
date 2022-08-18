@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+body {
+  width: 100vw;
+  /* height: 100vh; */
+  overflow-y: scroll;
+  background: linear-gradient(358.36deg, rgba(34, 130, 248, 0.856) 10.06%, rgba(255, 103, 69, 0.836) 138.32%), url(./img/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "mali", cursive, Verdana, Geneva, Tahoma, sans-serif;
+  color: white;
+}
+
+.arrowRight {
+  height: 70%;
+}
+
+.discover {
+  margin: 20px auto;
+  color: #FF6584;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.login{
+  background: #3290FF;
+border-radius: 21px;
+color: white;
+padding-block: 8px;
+font-size: 20px;
+}
+
+.orText{
+  text-align: center;
+  margin: 10px auto;
+}
+
+.loginGoogle{
+  padding: 5px 0;
+  background: #FE756C;
+  color: white;
+  gap: 10px;
+}
