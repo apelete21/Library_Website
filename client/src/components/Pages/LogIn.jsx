@@ -1,6 +1,7 @@
 import React from "react";
 import Google from "../../img/Google.svg";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: block;
@@ -72,6 +73,15 @@ function LogIn() {
           <span>Log In with Google</span>
         </Button>
       </Form>
+      <TextPar className="LogToSign">
+        <span>Don't have an account ? </span>
+        <Link 
+        style={{ color: "#ff877f", fontWeight: 'bold'}}
+        to={'/signin'}
+        >
+            <span> Sign Up</span>
+        </Link>
+      </TextPar>
     </Container>
   );
 }

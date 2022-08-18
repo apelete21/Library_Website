@@ -17,7 +17,6 @@ a {
 
 body {
   width: 100vw;
-  /* height: 100vh; */
   overflow-y: scroll;
   background: linear-gradient(358.36deg, rgba(34, 130, 248, 0.856) 10.06%, rgba(255, 103, 69, 0.836) 138.32%), url(./img/background.png);
   background-position: center;
@@ -105,4 +104,8 @@ body {
 
 .loginBtn{
   margin: 50px 0px 20px;
+}
+
+.LogToSign{
+  text-align: center;
 }
