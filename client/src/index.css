@@ -3,6 +3,7 @@
   padding: 0;
   font-family: "mali", cursive, Verdana, Geneva, Tahoma, sans-serif;
   box-sizing: border-box;
+  outline: none;
 }
 
 a {
@@ -23,6 +24,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
+  position: relative;
 }
 
 .arrowRight {
@@ -45,7 +47,7 @@ body {
   border-radius: 21px;
   color: white;
   padding-block: 8px;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 .orText {
@@ -57,6 +59,7 @@ body {
   padding: 5px 0;
   background: #FE756C;
   color: white;
+  font-size: 1em;
   gap: 10px;
 }
 
@@ -76,3 +79,30 @@ body {
 }
 
 /* Burger Menu  */
+
+.inputControl{
+  padding: 8px 18px;
+  border: none;
+  border-radius: 20px;
+}
+
+.loginText{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.PassForget{
+  text-align: right;
+}
+
+.LoginTitle{
+  margin-top: 10px;
+}
+
+.form{
+  
+}
+
+.loginBtn{
+  margin: 50px 0px 20px;
+}

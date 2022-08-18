@@ -3,6 +3,7 @@ import Home from "./components/Pages/Home";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Navbar from './components/global/Navbar'
+import LogIn from "./components/Pages/LogIn";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -18,6 +19,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path={"/"} element={<Home />} />
+          <Route path={"/login"} element={<LogIn />} />
         </Routes>
       </Wrapper>
     </>
