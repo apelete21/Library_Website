@@ -6,6 +6,7 @@ import Navbar from "./components/global/Navbar";
 import LogIn from "./components/Pages/LogIn";
 import SignUp from "./components/Pages/SignUp";
 import RetrivePass from "./components/Pages/RetrivePass";
+import ResetPass from "./components/Pages/ResetPass.jsx";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -24,6 +25,7 @@ const App = () => {
           <Route path={"/login"} element={<LogIn />} />
           <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/retrivepassword"} element={<RetrivePass />} />
+          <Route path={"/resetpassword"} element={<ResetPass />} />
         </Routes>
       </Wrapper>
     </>

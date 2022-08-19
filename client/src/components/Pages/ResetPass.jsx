@@ -47,22 +47,26 @@ const Button = styled.button`
   font-weight: bold;
 `;
 
-function RetrivePass() {
+function ResetPass() {
   return (
     <>
       <Container>
-        <H1 className="LoginTitle">Enter your email</H1>
+        <H1 className="LoginTitle">Reset Password</H1>
         <TextPar className="loginText">
-          We'll send you instructions on how to reset your password to the email
-          address you have registered with us
+          Enter your new password to reset the old password
         </TextPar>
         <Form className="form">
           <Input
-            type="email"
-            placeholder="Your Email here"
+            type="password"
+            placeholder="Your new password"
             className="inputControl"
           ></Input>
-          <Button className="loginGoogle">Send</Button>
+          <Input
+            type="password"
+            placeholder="Confirm password"
+            className="inputControl"
+          ></Input>
+          <Button className="loginGoogle">Submit</Button>
         </Form>
         <TextPar className="LogToSign">
           <span>Don't have an account ? </span>
@@ -75,4 +79,4 @@ function RetrivePass() {
   );
 }
 
-export default RetrivePass;
+export default ResetPass;
