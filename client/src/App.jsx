@@ -8,9 +8,9 @@ import SignUp from "./components/Pages/SignUp";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 40px);
+  height: 100vh;
   overflow-y: scroll;
-  padding: 0px 0 30px;
+  padding: 30px 0 30px;
 `;
 
 const App = () => {

@@ -50,7 +50,7 @@ body {
   background: #32a6ff;
   border-radius: 21px;
   color: white;
-  padding-block: 8px;
+  padding-block: 5px;
   font-size: 1em;
 }
 
@@ -62,12 +62,20 @@ body {
 .loginGoogle {
   padding: 5px 0;
   background: #FE756C;
-  color: white;
+  color: #fff;
   font-size: 1em;
   gap: 10px;
 }
 
 /* Burger Menu  */
+
+.burgerMenu{
+  cursor: pointer;
+}
+
+.burgerMenu .spanLine0 {
+  opacity: 0;
+}
 
 .burgerMenu span:nth-child(1) {
   background-color: #fff;
@@ -82,12 +90,81 @@ body {
   margin-left: 50%;
 }
 
+.burgerMenu:hover > span:nth-child(1){
+  animation: reduce-wrap .5s linear forwards;
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+.burgerMenu:hover > span:nth-child(2){
+  animation: reduce-wrap .5s linear forwards;
+}
+
+@keyframes reduce-wrap {
+  50%{
+    width: 0%;
+  }
+   100%{
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+.closebtn {
+  transform: scaleY(1);
+  transition: all .8s;
+  opacity: 1;
+}
+
+.closebtn0{
+  opacity: 0;
+  transform: scaleY(0);
+  /* transition: all .8s; */
+}
+
+.closebtn span:nth-child(1) {
+  background-color: #fff;
+  width: 100%;
+  height: 4px;
+  transition: all .5s;
+  transform: rotate(45deg) translateX(30%) translateY(90%);
+}
+
+.closebtn span:nth-child(2) {
+  background-color: #fff;
+  width: 100%;
+  height: 4px;
+  transition: all .5s;
+  transform: rotate(-45deg) translateX(-30%) translateY(-200%);
+}
+
 /* Burger Menu  */
+
+
 /* Navbar, animation */
 
 .navbarTop{
-  position: fixed;
-  top: 0;
+  
+}
+
+.menuItems{
+  background: #564545c4;
+  width: 85%;
+  height: calc(100vh - 120%);
+  max-width: 240px;
+  min-width: 200px;
+  padding-inline: 20px;
+  padding-block: 30px;
+  text-align: right;
+  transition: all .5s;
+  top: 120%;
+  right: 0%;
+  z-index: 6;
+}
+
+.menuhide{
+  transition: all .5s;
+  width: 0;
+  transform: translate(100%, 0);
 }
 
 /* Navbar, animation */
@@ -96,6 +173,7 @@ body {
   padding: 8px 18px;
   border: none;
   border-radius: 20px;
+  color: white;
 }
 
 .loginText{

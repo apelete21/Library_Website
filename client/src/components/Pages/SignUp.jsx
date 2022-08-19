@@ -30,7 +30,6 @@ const Input = styled.input`
   font-size: 18px;
   margin: 15px 0;
   background: rgba(255, 255, 255, 0.31);
-  color: #e6e6e6;
 
   &::placeholder {
     color: #e6e6e6;
@@ -52,8 +51,8 @@ const Button = styled.button`
 function LogIn() {
   return (
     <Container>
-      <H1 className="LoginTitle">LogIn</H1>
-      <TextPar className="loginText">Let us know you</TextPar>
+      <H1 className="LoginTitle">Sign Up</H1>
+      <TextPar className="loginText">Let's get in touch</TextPar>
       <Form className="form">
         <Input
           type="text"

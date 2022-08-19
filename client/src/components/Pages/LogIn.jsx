@@ -30,7 +30,6 @@ const Input = styled.input`
   font-size: 18px;
   margin: 15px 0;
   background: rgba(255, 255, 255, 0.31);
-  color: #e6e6e6;
 
   &::placeholder {
     color: #e6e6e6;
