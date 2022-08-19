@@ -20,7 +20,7 @@ const Form = styled.form`
   display: grid;
   margin: 30px auto;
   width: 80%;
-  max-width: 800px;
+  max-width: 300px;
   height: fit-content;
   padding: 30px 0;
 `;
@@ -77,7 +77,7 @@ function LogIn() {
         <span>Don't have an account ? </span>
         <Link 
         style={{ color: "#ff877f", fontWeight: 'bold'}}
-        to={'/signin'}
+        to={'/signup'}
         >
             <span> Sign Up</span>
         </Link>

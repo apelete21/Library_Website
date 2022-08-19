@@ -15,10 +15,15 @@ a {
   width: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   width: 100vw;
+  height: 100vh;
   overflow-y: scroll;
-  background: linear-gradient(358.36deg, rgba(34, 130, 248, 0.856) 10.06%, rgba(255, 103, 69, 0.836) 138.32%), url(./img/background.png);
+  background: linear-gradient(358.36deg, rgba(34, 130, 248, 0.822) 10.06%, rgba(255, 103, 69, 0.771) 138.32%), url(./img/background.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -42,7 +47,7 @@ body {
 }
 
 .login {
-  background: #3290FF;
+  background: #32a6ff;
   border-radius: 21px;
   color: white;
   padding-block: 8px;
@@ -78,6 +83,14 @@ body {
 }
 
 /* Burger Menu  */
+/* Navbar, animation */
+
+.navbarTop{
+  position: fixed;
+  top: 0;
+}
+
+/* Navbar, animation */
 
 .inputControl{
   padding: 8px 18px;
