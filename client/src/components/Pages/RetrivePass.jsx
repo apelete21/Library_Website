@@ -48,40 +48,29 @@ const Button = styled.button`
   font-weight: bold;
 `;
 
-function LogIn() {
+function RetrivePass() {
   return (
-    <Container>
-      <H1 className="LoginTitle">LogIn</H1>
-      <TextPar className="loginText">Let us know you</TextPar>
-      <Form className="form">
-        <Input
-          type="text"
-          placeholder="Username"
-          className="inputControl"
-        ></Input>
-        <Input
-          type="text"
-          placeholder="Password"
-          className="inputControl"
-        ></Input>
-        <Link to={"/retrivepassword"}>
-          <TextPar className="PassForget">Forgot Password ?</TextPar>
-        </Link>
-        <Button className="login loginBtn">Log In</Button>
-        <p className="orText">Or Log In With</p>
-        <Button className="loginGoogle">
-          <img src={Google} className="googleImg" alt="" />
-          <span>Log In with Google</span>
-        </Button>
-      </Form>
-      <TextPar className="LogToSign">
+    <>
+      <Container>
+        <H1 className="LoginTitle">Enter your email</H1>
+        <TextPar className="loginText">Let us know you</TextPar>
+        <Form className="form">
+          <Input
+            type="email"
+            placeholder="Your Email here"
+            className="inputControl"
+          ></Input>
+          <Button className="loginGoogle">Send</Button>
+        </Form>
+        <TextPar className="LogToSign">
         <span>Don't have an account ? </span>
         <Link style={{ color: "#ff877f", fontWeight: "bold" }} to={"/signup"}>
           <span> Sign Up</span>
         </Link>
       </TextPar>
-    </Container>
+      </Container>
+    </>
   );
 }
 
-export default LogIn;
+export default RetrivePass;

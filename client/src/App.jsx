@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Navbar from "./components/global/Navbar";
 import LogIn from "./components/Pages/LogIn";
 import SignUp from "./components/Pages/SignUp";
+import RetrivePass from "./components/Pages/RetrivePass";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -22,6 +23,7 @@ const App = () => {
           <Route path={"/"} element={<Home />} />
           <Route path={"/login"} element={<LogIn />} />
           <Route path={"/signup"} element={<SignUp />} />
+          <Route path={"/retrivepassword"} element={<RetrivePass />} />
         </Routes>
       </Wrapper>
     </>

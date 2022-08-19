@@ -17,6 +17,7 @@ a {
 
 button {
   cursor: pointer;
+  transition: all .5s;
 }
 
 body {
@@ -147,7 +148,7 @@ body {
 }
 
 .menuItems{
-  background: #564545c4;
+  background: #0a3a5176;
   width: 85%;
   height: calc(100vh - 120%);
   max-width: 240px;
@@ -199,4 +200,8 @@ body {
 
 .LogToSign{
   text-align: center;
+}
+
+button:hover{
+  background-color: #d8d8d8ba;
 }
