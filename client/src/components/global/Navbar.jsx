@@ -5,7 +5,10 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100%;
+  min-height: 38px;
+  max-height: 50px;
   padding: 8px 10px;
+  z-index: 20;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -33,6 +36,7 @@ const CloseBtn = styled.div`
 const MenuItems = styled.div`
   display: grid;
   align-items: center;
+  align-content: space-between;
   gap: 20%;
   position: absolute;
 `;
@@ -40,7 +44,9 @@ const MenuItems = styled.div`
 const Items = styled.div`
   display: grid;
   align-items: stretch;
-  gap: 30%;
+  gap: 20%;
+  font-weight: bold;
+  font-size: 18px;
 `;
 
 const AuthContainer = styled.div`
@@ -74,14 +80,14 @@ function Navbar() {
           className={navToggle === 1 ? "menuItems" : "menuhide menuItems"}
         >
           <Items>
-            <Link to={"/"} onClick={() => ToggleNavigation()}>
-              Home
+            <Link to={"/discover"} onClick={() => ToggleNavigation()}>
+              Discover
             </Link>
             <Link to={"/"} onClick={() => ToggleNavigation()}>
-              Home
+              Welcome Page
             </Link>
-            <Link to={"/"} onClick={() => ToggleNavigation()}>
-              Home
+            <Link to={"/categories"} onClick={() => ToggleNavigation()}>
+              Categories
             </Link>
             <Link to={"/"} onClick={() => ToggleNavigation()}>
               Home
@@ -99,7 +105,7 @@ function Navbar() {
             </Link>
           </AuthContainer>
         </MenuItems>
-        <Link to={"/"}>Navbar</Link>
+        <div><Link to={"/"}>Navbar</Link></div>
         <Burger className="burgerMenu" onClick={() => ToggleNavigation()}>
           <span className={navToggle === 1 ? "spanLine0" : ""}></span>
           <span className={navToggle === 1 ? "spanLine0" : ""}></span>
