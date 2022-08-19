@@ -92,10 +92,10 @@ function Navbar() {
           </Items>
           <AuthContainer>
             <Link to="/login">
-              <Button className="login">Log In</Button>
+              <Button className="login" onClick={() => ToggleNavigation()}>Log In</Button>
             </Link>
             <Link to="/signup">
-              <Button className="login loginGoogle">Sign Up</Button>
+              <Button className="login loginGoogle" onClick={() => ToggleNavigation()}>Sign Up</Button>
             </Link>
           </AuthContainer>
         </MenuItems>

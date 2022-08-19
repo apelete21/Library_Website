@@ -7,6 +7,7 @@ import LogIn from "./components/Pages/LogIn";
 import SignUp from "./components/Pages/SignUp";
 import RetrivePass from "./components/Pages/RetrivePass";
 import ResetPass from "./components/Pages/ResetPass.jsx";
+import Error from "./components/Pages/Error";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,6 +27,7 @@ const App = () => {
           <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/retrivepassword"} element={<RetrivePass />} />
           <Route path={"/resetpassword"} element={<ResetPass />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </Wrapper>
     </>
