@@ -56,7 +56,7 @@ const Categories = () => {
       <Container>
         <CategorieSection>
           {categories.map((item) => (
-            <Link to={`/${item.name}`} key={item}>
+            <Link to={`/categories/${item.name}`} key={item}>
               <CategorieEl>{item.name}</CategorieEl>
             </Link>
           ))}

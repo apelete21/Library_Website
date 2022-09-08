@@ -29,7 +29,7 @@ export default class Item extends Component {
     return (
       <>
         <Container className="item">
-          <Link to={`${this.props.id}`}>
+          <Link to={`/categories/${this.props.id}`}>
             <img src={this.props.picture} alt="" className="w-100" />
             <Name>{this.props.id}</Name>
             <Author>

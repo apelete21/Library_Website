@@ -34,8 +34,8 @@ const App = () => {
           <Route path="/error" element={<Error />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/:name" element={<CategoryItems />}>
-            <Route path="/:name/:id" element={<ItemPage />} />
+          <Route path="/categories/:name" element={<CategoryItems />} >
+            <Route path="/categories/:name/:id" element={<ItemPage />} />
           </Route>
         </Routes>
       </Wrapper>

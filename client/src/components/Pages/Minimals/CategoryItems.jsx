@@ -1,6 +1,6 @@
-import React from 'react'
-import { useParams, Link } from 'react-router-dom'
-import styled from 'styled-components';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import styled from "styled-components";
 import categories from "../../../dflt_cate";
 import books from "../../../dflt_list";
 import Item from "../Minimals/Item";
@@ -32,13 +32,12 @@ const CategorieEl = styled.p`
   font-weight: bold;
   padding: 4px 10px;
   vertical-align: middle;
-  transition: all .3s;
+  transition: all 0.3s;
 
-  &:hover{
+  &:hover {
     background-color: #243254;
   }
 `;
-
 
 const Place = styled.p`
   width: 100vw;
@@ -60,31 +59,35 @@ const Items = styled.div`
   padding-block: 2vh;
   column-gap: 2%;
   row-gap: 4%;
-`
+`;
 
 const CategoryItems = () => {
-
-    const params = useParams()
+  const params = useParams();
 
   return (
     <>
       <Place>{params.name}</Place>
       <Container>
-      <CategorieSection>
-        {categories.map((item) => (
-          <Link to={`/${item.name}`} key={item}>
-            <CategorieEl>{item.name}</CategorieEl>
-          </Link>
-        ))}
-      </CategorieSection>
-    </Container>
+        <CategorieSection>
+          {categories.map((item, index) => (
+            <Link to={`/categories/${item.name}`} key={index}>
+              <CategorieEl>{item.name}</CategorieEl>
+            </Link>
+          ))}
+        </CategorieSection>
+      </Container>
       <Items>
-      {books.map((item) => 
-        <Item key={item} id={item.id} picture={item.picture} author={item.author} />
-      )}
-    </Items>
+        {books.map((item, index) => (
+          <Item
+            key={index}
+            id={item.id}
+            picture={item.picture}
+            author={item.author}
+          />
+        ))}
+      </Items>
     </>
-  )
-}
+  );
+};
 
-export default CategoryItems
+export default CategoryItems;
