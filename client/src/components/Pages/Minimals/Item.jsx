@@ -8,6 +8,7 @@ const Container = styled.div`
   border-radius: 20px;
   overflow: hidden;
   width: 48%;
+  height: fit-content;
 `;
 
 const Name = styled.p`
