@@ -1,15 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Pages/Home";
+import Home from "./components/Pages/Home/Home";
 import styled from "styled-components";
 import Navbar from "./components/global/Navbar";
-import LogIn from "./components/Pages/LogIn";
-import SignUp from "./components/Pages/SignUp";
-import RetrivePass from "./components/Pages/RetrivePass";
-import ResetPass from "./components/Pages/ResetPass.jsx";
-import Error from "./components/Pages/Error";
-import Discover from "./components/Pages/Discover";
-import Categories from "./components/Pages/Categories";
+import LogIn from "./components/Pages/Auth/LogIn";
+import SignUp from "./components/Pages/Auth/SignUp";
+import RetrivePass from "./components/Pages/Auth/RetrivePass";
+import ResetPass from "./components/Pages/Auth/ResetPass";
+import Error from "./components/Pages/Error/Error";
+import Discover from "./components/Pages/Auth/Discover";
+import Categories from "./components/Pages/Minimals/Categories";
 
 const Wrapper = styled.div`
   width: 100%;
