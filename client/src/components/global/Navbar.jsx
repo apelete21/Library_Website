@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Container = styled.div`
   display: flex;
   width: 100%;
-  min-height: 38px;
+  min-height: 45px;
   max-height: 50px;
   padding: 8px 10px;
   z-index: 20;

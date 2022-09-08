@@ -8,15 +8,17 @@ import SignUp from "./components/Pages/Auth/SignUp";
 import RetrivePass from "./components/Pages/Auth/RetrivePass";
 import ResetPass from "./components/Pages/Auth/ResetPass";
 import Error from "./components/Pages/Error/Error";
-import Discover from "./components/Pages/Auth/Discover";
+import Discover from "./components/Pages/Home/Discover";
 import Categories from "./components/Pages/Minimals/Categories";
+import CategoryItems from "./components/Pages/Minimals/CategoryItems";
+import ItemPage from "./components/Pages/Minimals/ItemPage";
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
   padding: 45px 0 30px;
-`
+`;
 
 const App = () => {
   return (
@@ -32,6 +34,9 @@ const App = () => {
           <Route path="/error" element={<Error />} />
           <Route path="/discover" element={<Discover />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/:name" element={<CategoryItems />}>
+            <Route path="/:name/:id" element={<ItemPage />} />
+          </Route>
         </Routes>
       </Wrapper>
     </>

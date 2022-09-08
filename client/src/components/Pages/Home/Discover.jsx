@@ -1,7 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import categories from "../../../dflt_cate";
+import styled from "styled-components";
+import books from "../../../dflt_list";
+import Item from "../Minimals/Item";
 
 const Container = styled.div`
   width: 100%;
@@ -10,14 +12,12 @@ const Container = styled.div`
   display: grid;
   flex-wrap: wrap;
   position: relative;
+  justify-content: center;
 `;
 
 const CategorieSection = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  overflow-y: scroll;
-  margin-inline: auto;
+  overflow-x: scroll;
   gap: 20px;
   padding-inline: 10px;
 `;
@@ -43,27 +43,49 @@ const Place = styled.p`
   width: 100vw;
   padding: 10px;
   font-size: 25px;
-  font-family: Arial, Geneva, sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #384c7b;
   font-weight: bold;
-`
+`;
 
-const Categories = () => {
-  
+const Items = styled.div`
+  height: 79vh;
+  width: 98%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding-block: 2vh;
+  column-gap: 2%;
+  row-gap: 4%;
+`;
+
+const Discover = () => {
   return (
     <>
-    <Place>Categories</Place>
+      <Place>Discover</Place>
       <Container>
         <CategorieSection>
           {categories.map((item) => (
-            <Link to={`/${item.name}`} key={item}>
+            <Link to={`${item.name}`} key={item}>
               <CategorieEl>{item.name}</CategorieEl>
             </Link>
           ))}
         </CategorieSection>
       </Container>
+      <Items>
+        {books.map((item, index) => (
+          <Item
+            key={index}
+            id={item.id}
+            picture={item.picture}
+            author={item.author}
+          />
+        ))}
+      </Items>
     </>
   );
 };
 
-export default Categories;
+export default Discover;

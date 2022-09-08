@@ -52,7 +52,7 @@ function LogIn() {
   return (
     <Container>
       <H1 className="LoginTitle">Sign Up</H1>
-      <TextPar className="loginText">Let's get in touch</TextPar>
+      <TextPar className="loginText">Let's know you</TextPar>
       <Form className="form">
         <Input
           type="text"
