@@ -55,6 +55,7 @@ const Items = styled.div`
   overflow-x: hidden;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
   padding-block: 2vh;
   column-gap: 2%;

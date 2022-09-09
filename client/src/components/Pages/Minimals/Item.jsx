@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -23,21 +23,18 @@ const Author = styled.p`
   font-weight: 400;
 `;
 
-
-export default class Item extends Component {
-  render() {
-    return (
-      <>
-        <Container className="item">
-          <Link to={`/categories/${this.props.id}`}>
-            <img src={this.props.picture} alt="" className="w-100" />
-            <Name>{this.props.id}</Name>
-            <Author>
-              by <b>{this.props.author}</b>
-            </Author>
-          </Link>
-        </Container>
-      </>
-    );
-  }
+export default function Item(props) {
+  return (
+    <>
+      <Container className="item">
+        <Link to={`${props.id}`}>
+          <img src={props.picture} alt="" className="w-100" />
+          <Name>{props.id}</Name>
+          <Author>
+            by <b>{props.author}</b>
+          </Author>
+        </Link>
+      </Container>
+    </>
+  );
 }

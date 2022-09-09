@@ -55,8 +55,8 @@ const Categories = () => {
     <Place>Categories</Place>
       <Container>
         <CategorieSection>
-          {categories.map((item) => (
-            <Link to={`/categories/${item.name}`} key={item}>
+          {categories.map((item, index) => (
+            <Link to={`/categories/${item.name}`} key={index}>
               <CategorieEl>{item.name}</CategorieEl>
             </Link>
           ))}

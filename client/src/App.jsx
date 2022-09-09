@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 45px 0 30px;
 `;
 
@@ -31,12 +32,12 @@ const App = () => {
           <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/retrivepassword"} element={<RetrivePass />} />
           <Route path={"/resetpassword"} element={<ResetPass />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="*" element={<Error />} />
           <Route path="/discover" element={<Discover />} />
+          <Route path="/discover/:id" element={<ItemPage />} />
           <Route path="/categories" element={<Categories />} />
-          <Route path="/categories/:name" element={<CategoryItems />} >
-            <Route path="/categories/:name/:id" element={<ItemPage />} />
-          </Route>
+          <Route path="/categories/:name" element={<CategoryItems />} />
+          <Route path="/categories/:name/:id" element={<ItemPage />} />
         </Routes>
       </Wrapper>
     </>

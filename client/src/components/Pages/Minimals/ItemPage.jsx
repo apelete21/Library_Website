@@ -1,5 +1,7 @@
-import React, { useParams } from "react";
+import React from "react";
 import book from "../../../dflt_itm";
+import  { useParams } from 'react-router-dom'
+
 import styled from "styled-components";
 
 const Container = styled.div`

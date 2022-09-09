@@ -2,32 +2,32 @@ import picImage from './img/picturebook.png'
 const books = [
     {
         picture: picImage,
-        id: 1,
+        id: 'book1',
         author: 'Author'
     },
     {
         picture: picImage,
-        id: 2,
+        id: 'book2',
         author: 'Author'
     },
     {
         picture: picImage,
-        id: 3,
+        id: 'book3',
         author: 'Author'
     },
     {
         picture: picImage,
-        id: 4,
+        id: 'book4',
         author: 'Author'
     },
     {
         picture: picImage,
-        id: 5,
+        id: 'book5',
         author: 'Author'
     },
     {
         picture: picImage,
-        id: 6,
+        id: 'book6',
         author: 'Author'
     }
 ]

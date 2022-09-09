@@ -9,11 +9,12 @@ const Container = styled.div`
   max-height: 50px;
   padding: 8px 10px;
   z-index: 20;
+  /* overflow-x: hidden; */
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 0;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(13px);
 `;
 
 const Burger = styled.div`
@@ -105,7 +106,7 @@ function Navbar() {
             </Link>
           </AuthContainer>
         </MenuItems>
-        <div><Link to={"/"}>Navbar</Link></div>
+        <div><Link to={"/discover"}> <b>Lybrary</b> </Link></div>
         <Burger className="burgerMenu" onClick={() => ToggleNavigation()}>
           <span className={navToggle === 1 ? "spanLine0" : ""}></span>
           <span className={navToggle === 1 ? "spanLine0" : ""}></span>
