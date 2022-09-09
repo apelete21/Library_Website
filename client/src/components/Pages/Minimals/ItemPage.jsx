@@ -29,7 +29,7 @@ const ItemPage = () => {
     <>
       <Place>{params.id}</Place>
       <Container>
-        {book.author}
+        <img src={book.picture} alt="" />
       </Container>
     </>
   );

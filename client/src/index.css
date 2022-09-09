@@ -178,11 +178,10 @@ body {
 }
 
 .menuItems {
-  background: #0a3a5176;
+  background: rgb(1, 95, 196);
   width: 85%;
   height: calc(100vh - 100%);
   max-width: 400px;
-  min-width: 260px;
   padding-inline: 2em;
   padding-block: 30px;
   text-align: right;
@@ -193,13 +192,10 @@ body {
 }
 
 .menuhide {
-  transition: all .5s;
-  width: 0;
-  right: -100%;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  -ms-transition: all .5s;
-  -o-transition: all .5s;
+  width: 0vw !important;
+  padding: 0;
+  overflow: hidden;
+  transform-origin: left center;
 }
 
 /* Navbar, animation */
