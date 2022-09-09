@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "mali", cursive, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   outline: none;
 }
@@ -28,8 +28,6 @@ button {
 body {
   width: 100vw;
   height: 100vh;
-  /* overflow-y: scroll;
-  overflow-x: hidden; */
   /* background: linear-gradient(358.36deg, #2282f8ea 10.06%, #ff6745a1 138.32%); */
   background-color: #222;
   /* url(./img/background.png); */
@@ -256,7 +254,7 @@ img {
 .elementData {
   display: flex;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 30px;
 }
 
 

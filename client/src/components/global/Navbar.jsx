@@ -14,7 +14,7 @@ const Container = styled.div`
   align-items: center;
   position: absolute;
   top: 0;
-  backdrop-filter: blur(13px);
+  background: #222;
 `;
 
 const Burger = styled.div`
