@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: grid;
-  background: linear-gradient(90deg, #4040e99d, #ff62008e);
+  background: #444;
   border-radius: 20px;
   overflow: hidden;
   width: 48%;

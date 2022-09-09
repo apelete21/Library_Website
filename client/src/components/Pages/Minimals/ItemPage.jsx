@@ -6,12 +6,10 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 10px;
+  margin: 16px;
   background: #0000;
-  display: grid;
-  flex-wrap: wrap;
   position: relative;
-  justify-content: center;
+  justify-content: left;
 `;
 
 const Place = styled.p`
@@ -23,13 +21,35 @@ const Place = styled.p`
   font-weight: bold;
 `;
 
+const ItemImage = styled.div`
+  width: 70vw;
+  flex-grow: 0;
+  max-width: 400px;
+`
+
+const ItemData = styled.div`
+  width: 85vw;
+  max-width: 90%; 
+  flex-grow: 1;
+  margin-top: 3vh;
+  padding: 0 20px;
+`
+
+const ItemName = styled.h2`
+  font-weight: bold;
+  font-size: 30px;
+`
+
 const ItemPage = () => {
   const params = useParams();
   return (
     <>
       <Place>{params.id}</Place>
-      <Container>
-        <img src={book.picture} alt="" />
+      <Container className="elementData">
+        <ItemImage className="elementImage"><img src={book.picture} alt="" className="w-100"/></ItemImage>
+        <ItemData>
+          <ItemName>{book.name}</ItemName>
+        </ItemData>
       </Container>
     </>
   );

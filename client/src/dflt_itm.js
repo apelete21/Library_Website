@@ -2,7 +2,7 @@ import picImage from './img/picturebook.png'
 
 const book = {
     picture: picImage,
-    id: 'Books',
+    name: 'Oliver Twist',
     author: 'Author'
 }
 

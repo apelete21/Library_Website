@@ -21,6 +21,7 @@ const CategorieSection = styled.div`
   gap: 20px;
   padding-inline: 10px;
 `;
+
 const CategorieEl = styled.p`
   background-color: #384c7b;
   width: max-content;

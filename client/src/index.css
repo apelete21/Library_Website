@@ -30,7 +30,9 @@ body {
   height: 100vh;
   /* overflow-y: scroll;
   overflow-x: hidden; */
-  background: linear-gradient(358.36deg, #2282f8ea 10.06%, #ff6745a1 138.32%), url(./img/background.png);
+  /* background: linear-gradient(358.36deg, #2282f8ea 10.06%, #ff6745a1 138.32%); */
+  background-color: #222;
+  /* url(./img/background.png); */
   background-position: center;
   backdrop-filter: blur(7px);
   background-repeat: no-repeat;
@@ -170,7 +172,6 @@ body {
 
 /* Burger Menu  */
 
-
 /* Navbar, animation */
 
 .navbarTop {
@@ -178,7 +179,7 @@ body {
 }
 
 .menuItems {
-  background: rgb(1, 95, 196);
+  background: #444;
   width: 85%;
   height: calc(100vh - 100%);
   max-width: 400px;
@@ -250,6 +251,24 @@ button:hover {
 img {
   object-fit: cover;
   object-position: center;
+}
+
+.elementData {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+
+@media (max-width: 500px) {
+  .elementData {
+    display: grid;
+  }
+
+  .elementImage{
+    margin-inline: auto;
+    padding: 0;
+  }
 }
 
 /* Item Section */
