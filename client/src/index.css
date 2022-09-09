@@ -39,6 +39,20 @@ body {
   position: relative;
 }
 
+#root {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.vw-100 {
+  width: 100vw;
+}
+
+.vh-100 {
+  height: 100vh;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -181,7 +195,11 @@ body {
 .menuhide {
   transition: all .5s;
   width: 0;
-  transform: translate(100%, 0);
+  right: -100%;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
 }
 
 /* Navbar, animation */
