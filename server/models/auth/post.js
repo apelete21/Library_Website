@@ -4,18 +4,16 @@ const PostSchema = mongoose.Schema({
     fullName: {
         type: 'String',
         required: true,
-        unique: true,
     },
     userName: {
         type: 'String',
         required: true,
         unique: true,
-        min: 5,
+        min: 6,
     },
     password: {
         type: 'String',
         required: true,
-        unique: true,
         min: 6
     }
 })

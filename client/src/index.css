@@ -270,3 +270,12 @@ img {
 }
 
 /* Item Section */
+
+/* loadding */
+
+.loading{
+  height: 100%;
+  display: grid;
+}
+
+/* loadding */

@@ -16,9 +16,12 @@ exports.createUser = (req, response) => {
         password: req.body.password
     })
 
-    db_connect.collection("records").insertOne(post, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-      });
 
+    db_connect.collection("users").insertOne(post, function (err, res) {
+        if (res.acknowledged) {
+            response.json(post);
+        } else {
+            response.json(err)
+        }
+    });
 }

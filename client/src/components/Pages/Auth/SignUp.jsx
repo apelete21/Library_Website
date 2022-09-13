@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../../img/loading.gif";
 // import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
@@ -49,68 +50,75 @@ const Button = styled.button`
 `;
 
 function LogIn() {
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
 
     const [fullName, setFullName] = useState();
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
     const [passwordConfirm, setPasswordConfirm] = useState();
-    const [validation, setValidation] = useState()
+    const [validation, setValidation] = useState();
 
     const handleFullName = (e) => {
         setFullName(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
     const handleUserName = (e) => {
         setUserName(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
     const handlePasswordConfirm = (e) => {
         setPasswordConfirm(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
-    const signUp = async (e, ) => {
+    // const signUp = async (e, ) => {
 
-      e.preventDefault()
+    async function signUp(e) {
+        e.preventDefault();
 
-      if ( password.length < 6 ) {
-        setValidation('6 characters minimum !')
-        return
-      } else if ( password !== passwordConfirm ) {
-        setValidation('Passwords do not match !')
-        return
-      }
+        if (password.length < 6) {
+            setValidation("6 characters minimum !");
+            return;
+        } else if (password !== passwordConfirm) {
+            setValidation("Passwords do not match !");
+            return;
+        }
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
+        const data = JSON.stringify({
             fullName: fullName,
             userName: userName,
             password: password,
         });
 
-        var requestOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow",
-        };
+        setValidation("");
 
-        fetch("https://localhost:5000/signup", requestOptions)
-            .then((response) => response.text())
-            .then((result) => navigate('/discover'))
-            .catch(error => navigate('/error'));
-    };
+        setLoading(true)
+
+        // This will send a post request to update the data in the database.
+        await fetch("http://localhost:5000/signup", {
+            method: "POST",
+            body: data,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((res) => {
+                console.log(res);
+                // navigate('/discover')
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     return (
         <Container>
@@ -145,9 +153,26 @@ function LogIn() {
                     value={passwordConfirm}
                     onChange={handlePasswordConfirm}
                 ></Input>
-                <p style={{
-                  color: 'red'
-                }}> {validation} </p>
+                <p
+                    style={{
+                        color: "red",
+                    }}
+                >
+                    {" "}
+                    {validation}{" "}
+                </p>
+                {loading ? () => {
+                  return (<div className="loading">
+                  <img
+                      src={Loading}
+                      alt=""
+                      style={{
+                          height: "60px",
+                          marginInline: "auto",
+                      }}
+                  />
+              </div>)
+                } : ''}
                 <Button className="login loginBtn">Sign Up</Button>
             </Form>
             <TextPar className="LogToSign">
