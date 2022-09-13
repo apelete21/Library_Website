@@ -18,6 +18,7 @@ const ErrorImg = styled.img`
     margin-inline: auto;
 `
 const H1 = styled.p`
+font-family: cursive;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
@@ -39,7 +40,7 @@ const Error = () => {
   return (
     <Container>
         <ErrorImg src={ErrImg} alt="" />
-        <H1>Something went wrong</H1>
+        <H1>An Error Occured</H1>
         <TextPar>
             We're not sure what happened, but we know an error occured
         </TextPar>
