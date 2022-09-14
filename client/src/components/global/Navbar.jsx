@@ -75,7 +75,7 @@ function Navbar() {
         if (navToggle === 1) setNavToggle(0);
     };
 
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, loggedIn, logOut } = useContext(UserContext);
 
     return (
         <>
@@ -92,6 +92,12 @@ function Navbar() {
                         >
                             Discover
                         </Link>
+                        {loggedIn && <Link
+                            to={"/profile"}
+                            onClick={() => ToggleNavigation()}
+                        >
+                            Profile
+                        </Link>}
                         <Link to={"/"} onClick={() => ToggleNavigation()}>
                             Welcome Page
                         </Link>
@@ -101,43 +107,58 @@ function Navbar() {
                         >
                             Categories
                         </Link>
-                        <Link to={"/"} onClick={() => ToggleNavigation()}>
-                            Home
-                        </Link>
-                        <Link to={"/"} onClick={() => ToggleNavigation()}>
-                            Home
-                        </Link>
                     </Items>
-                    <AuthContainer>
-                        <Link to="/login">
-                            <Button
-                                className="login"
-                                onClick={() => ToggleNavigation()}
-                            >
-                                Log In
-                            </Button>
-                        </Link>
-                        <Link to="/signup">
-                            <Button
-                                className="login loginGoogle"
-                                onClick={() => ToggleNavigation()}
-                            >
-                                Sign Up
-                            </Button>
-                        </Link>
-                    </AuthContainer>
+                    {!loggedIn && (
+                        <AuthContainer>
+                            <Link to="/login">
+                                <Button
+                                    className="login"
+                                    onClick={() => ToggleNavigation()}
+                                >
+                                    Log In
+                                </Button>
+                            </Link>
+                            <p className="orText">Or</p>
+                            <Link to="/signup">
+                                <Button
+                                    className="login"
+                                    onClick={() => ToggleNavigation()}
+                                >
+                                    Sign Up
+                                </Button>
+                            </Link>
+                        </AuthContainer>
+                    )}
+                    {loggedIn && (
+                        <AuthContainer>
+                            <Link to="/discover" onClick={() => logOut()}>
+                                <Button
+                                    className="login loginGoogle"
+                                    onClick={() => ToggleNavigation()}
+                                >
+                                    Log Out
+                                </Button>
+                            </Link>
+                        </AuthContainer>
+                    )}
                 </MenuItems>
                 <div>
-                    <Link to={"/dashboard"}>
+                    <Link to={"/profile"}>
                         {" "}
                         <b>{currentUser.name ? currentUser.name : "Guest"}</b>
                     </Link>
                 </div>
-                <Link to={"/discover"} style={{
-                  textAlign: 'center',
-                  width: 'max-content',
-                }}>
-                    <div> <b>Home</b> </div>
+                <Link
+                    to={"/discover"}
+                    style={{
+                        textAlign: "center",
+                        width: "max-content",
+                    }}
+                >
+                    <div>
+                        {" "}
+                        <b>Home</b>{" "}
+                    </div>
                 </Link>
                 <Burger
                     className="burgerMenu"

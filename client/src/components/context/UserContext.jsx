@@ -57,19 +57,28 @@ export function UserContextProvider(props) {
           .then(function (response) {
             responseSent = response.data
             setCurrentUser(response.data.data.user)
+            localStorage.setItem('user', response.data.data)
             setLoggedIn(true)
           })
           .catch(function (error) {
             console.log(error);
           });
-          
         return responseSent
     };
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+      var local = localStorage.getItem('user')
+      console.log(local);
+    }, []);
+
+    const logOut = () => {
+      setLoggedIn(false)
+      setCurrentUser({})
+      localStorage.removeItem('user')
+    }
 
     return (
-        <UserContext.Provider value={{ signUp, currentUser, LogIn }}>
+        <UserContext.Provider value={{ signUp, currentUser, LogIn, logOut, loggedIn }}>
             {props.children}
         </UserContext.Provider>
     );

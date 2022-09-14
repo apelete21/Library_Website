@@ -55,18 +55,18 @@ function LogInFunc() {
     const [validation, setValidation] = useState();
     const [blue, setBlue] = useState();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const { LogIn } = useContext(UserContext);
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
-        setValidation('')
+        setValidation("");
     };
 
     async function handleForm(e) {
@@ -74,21 +74,19 @@ function LogInFunc() {
 
         const userData = {
             value: {
-                "email": email,
-                "password": password,
+                email: email,
+                password: password,
             },
         };
 
         try {
             const reqFunc = await LogIn(userData);
             console.log(reqFunc);
-            if (reqFunc.status === 'success') {
+            if (reqFunc.status === "success") {
                 setBlue("Login Successfull !");
-                setValidation('')
-                setTimeout(() => {
-                    navigate("/discover");
-                }, 2000);
-            } else setValidation(reqFunc.message)
+                setValidation("");
+                navigate("/discover");
+            } else setValidation(reqFunc.message);
         } catch (error) {
             console.log(error);
             setValidation("There's an Error, Try again !");

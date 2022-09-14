@@ -34,8 +34,8 @@ const ItemImage = styled.div`
 `;
 
 const ItemData = styled.div`
-  width: 100vw;
-  max-width: 90%;
+  width: 100%;
+  max-width: 1500px;
   flex-grow: 1;
   margin-top: 3vh;
   display: grid;
@@ -84,7 +84,11 @@ const ItemPage = () => {
 
           <ItemDesc>
             {" "}
-            <b>Description</b> <hr /> <br /> {book.describe}{" "}
+            <b>Description</b> <br /> 
+              <p style={{
+              'margin-top': 12,
+            }}>{book.describe}</p>
+            {" "}
           </ItemDesc>
           <DlBtn>Download</DlBtn>
         </ItemData>
