@@ -7,8 +7,8 @@ const baseURL = "http://localhost:5000"
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
-    const [currentUser, setCurrentUser] = useState();
-    const [loadingData, setLoadingData] = useState(true);
+    const [currentUser, setCurrentUser] = useState({});
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const signUp = async (data) => {
         var responseSent;
@@ -29,7 +29,6 @@ export function UserContextProvider(props) {
           
          await axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data));
             responseSent = response.data
           })
           .catch(function (error) {
@@ -57,11 +56,13 @@ export function UserContextProvider(props) {
          await axios(config)
           .then(function (response) {
             responseSent = response.data
+            setCurrentUser(response.data.data.user)
+            setLoggedIn(true)
           })
           .catch(function (error) {
             console.log(error);
           });
-
+          
         return responseSent
     };
 

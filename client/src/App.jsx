@@ -12,36 +12,59 @@ import Discover from "./components/Pages/Home/Discover";
 import Categories from "./components/Pages/Minimals/Categories";
 import CategoryItems from "./components/Pages/Minimals/CategoryItems";
 import ItemPage from "./components/Pages/Minimals/ItemPage";
+import { useContext } from "react";
+import { UserContext } from "./components/context/UserContext";
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding: 45px 0 30px;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 45px 0 30px;
 `;
 
 const App = () => {
-  return (
-    <>
-      <Navbar className="navbarTop" />
-      <Wrapper className="wrapper">
-        <Routes>
-          <Route path={"/"} element={<Home />} />
-          <Route path={"/login"} element={<LogIn />} />
-          <Route path={"/signup"} element={<SignUp />} />
-          <Route path={"/retrivepassword"} element={<RetrivePass />} />
-          <Route path={"/resetpassword"} element={<ResetPass />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/discover" element={<Discover />} />
-          <Route path="/discover/:id" element={<ItemPage />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/categories/:name" element={<CategoryItems />} />
-          <Route path="/categories/:name/:id" element={<ItemPage />} />
-        </Routes>
-      </Wrapper>
-    </>
-  );
+    const { currentUser } = useContext(UserContext);
+
+    return (
+        <>
+            <Navbar className="navbarTop" />
+            <Wrapper className="wrapper">
+                <Routes>
+                    <Route path={"/"} element={<Home />} />
+                    {!currentUser.name && (
+                        <>
+                            <Route path={"/login"} element={<LogIn />} />
+                            <Route path={"/signup"} element={<SignUp />} />
+                            <Route
+                                path={"/retrivepassword"}
+                                element={<RetrivePass />}
+                            />
+                            <Route
+                                path={"/resetpassword"}
+                                element={<ResetPass />}
+                            />
+                        </>
+                    )}
+                    <Route path="*" element={<Error />} />
+                    <Route path="/discover" element={<Discover />} />
+                    <Route path="/discover/:id" element={<ItemPage />} />
+                    <Route path="/categories" element={<Categories />} />
+                    <Route
+                        path="/categories/:name"
+                        element={<CategoryItems />}
+                    />
+                    <Route
+                        path="/categories/:name/:id"
+                        element={<ItemPage />}
+                    />
+                    {currentUser.name && (
+                        <Route path="/profile" element={<></>} />
+                    )}
+                </Routes>
+            </Wrapper>
+        </>
+    );
 };
 
 export default App;

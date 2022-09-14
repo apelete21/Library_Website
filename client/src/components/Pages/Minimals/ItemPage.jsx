@@ -17,7 +17,7 @@ const Place = styled.p`
   padding: 10px;
   font-size: 25px;
   font-family: Arial, sans-serif;
-  background-color: #323232;
+  background-color: #5c5c5c;
   position: sticky;
   top: 0;
   z-index: +3;

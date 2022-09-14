@@ -23,7 +23,7 @@ const CategorieSection = styled.div`
 `;
 
 const CategorieEl = styled.p`
-  background-color: #384c7b;
+  background-color: #484848;
   width: max-content;
   word-wrap: none;
   display: flex;
@@ -36,7 +36,7 @@ const CategorieEl = styled.p`
   transition: all 0.3s;
 
   &:hover {
-    background-color: #243254;
+    background-color: #303030;
   }
 `;
 
@@ -45,7 +45,7 @@ const Place = styled.p`
   padding: 10px;
   font-size: 25px;
   font-family: Arial, sans-serif;
-  background-color: #384c7b;
+  background-color: #5c5c5c;
   font-weight: bold;
 `;
 
