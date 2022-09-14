@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../../img/loading.gif";
-// import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     display: block;
@@ -49,24 +49,29 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
-function LogIn() {
+function SignIn() {
     const navigate = useNavigate();
+
+    const [myCurrentUser, setCurrentUser] = useState();
 
     const [loading, setLoading] = useState(false);
 
+    const { signUp, currentUser } = React.useContext(UserContext);
+
     const [fullName, setFullName] = useState();
-    const [userName, setUserName] = useState();
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [passwordConfirm, setPasswordConfirm] = useState();
     const [validation, setValidation] = useState();
+    const [blue, setBlue] = useState();
 
     const handleFullName = (e) => {
         setFullName(e.target.value);
         setValidation("");
     };
 
-    const handleUserName = (e) => {
-        setUserName(e.target.value);
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
         setValidation("");
     };
 
@@ -80,9 +85,7 @@ function LogIn() {
         setValidation("");
     };
 
-    // const signUp = async (e, ) => {
-
-    async function signUp(e) {
+    async function handleForm(e) {
         e.preventDefault();
 
         if (password.length < 6) {
@@ -93,38 +96,42 @@ function LogIn() {
             return;
         }
 
-        const data = JSON.stringify({
-            fullName: fullName,
-            userName: userName,
-            password: password,
-        });
-
-        setValidation("");
-
-        setLoading(true)
-
-        // This will send a post request to update the data in the database.
-        await fetch("http://localhost:5000/signup", {
-            method: "POST",
-            body: data,
-            headers: {
-                "Content-Type": "application/json",
+        const userData = {
+            place: {
+                fullName: "name",
+                email: "email",
+                password: "password",
             },
-        })
-            .then((res) => {
-                console.log(res);
-                // navigate('/discover')
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            value: {
+                name: fullName,
+                email: email,
+                password: password,
+            },
+        };
+
+        try {
+            const reqFunc = await signUp(userData);
+            console.log(reqFunc);
+            if (reqFunc.status === "success") {
+                setBlue("Signed Up Successfully !");
+                setTimeout(() => {
+                    setBlue("Now let's authenticate !");
+                }, 2000);
+                setTimeout(() => {
+                    navigate("/login");
+                }, 4000);
+            } else setValidation(reqFunc.message)
+        } catch (error) {
+            console.log(error);
+            setValidation("There's an Error, try again !");
+        }
     }
 
     return (
         <Container>
             <H1 className="LoginTitle">Sign Up</H1>
             <TextPar className="loginText">Let's know you</TextPar>
-            <Form className="form" onSubmit={signUp}>
+            <Form className="form" onSubmit={handleForm}>
                 <Input
                     type="text"
                     placeholder="FullName"
@@ -133,11 +140,11 @@ function LogIn() {
                     onChange={handleFullName}
                 ></Input>
                 <Input
-                    type="text"
-                    placeholder="Username"
+                    type="email"
+                    placeholder="Email"
                     className="inputControl"
-                    value={userName}
-                    onChange={handleUserName}
+                    value={email}
+                    onChange={handleEmail}
                 ></Input>
                 <Input
                     type="password"
@@ -153,26 +160,40 @@ function LogIn() {
                     value={passwordConfirm}
                     onChange={handlePasswordConfirm}
                 ></Input>
-                <p
-                    style={{
-                        color: "red",
-                    }}
-                >
-                    {" "}
-                    {validation}{" "}
-                </p>
-                {loading ? () => {
-                  return (<div className="loading">
-                  <img
-                      src={Loading}
-                      alt=""
-                      style={{
-                          height: "60px",
-                          marginInline: "auto",
-                      }}
-                  />
-              </div>)
-                } : ''}
+                <>
+                    <p
+                        style={{
+                            color: "red",
+                        }}
+                    >
+                        {" "}
+                        {validation}{" "}
+                    </p>
+                    <p
+                        style={{
+                            color: "green",
+                        }}
+                    >
+                        {" "}
+                        {blue}{" "}
+                    </p>
+                </>
+                {loading
+                    ? () => {
+                          return (
+                              <div className="loading">
+                                  <img
+                                      src={Loading}
+                                      alt=""
+                                      style={{
+                                          height: "60px",
+                                          marginInline: "auto",
+                                      }}
+                                  />
+                              </div>
+                          );
+                      }
+                    : ""}
                 <Button className="login loginBtn">Sign Up</Button>
             </Form>
             <TextPar className="LogToSign">
@@ -188,4 +209,4 @@ function LogIn() {
     );
 }
 
-export default LogIn;
+export default SignIn;

@@ -1,21 +1,75 @@
-// import React, { createContext, useState, useEffect } from "react";
-// import { Navigate } from "react-router";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios"
+import qs from 'qs'
 
-// export const UserContext = createContext();
+const baseURL = "http://localhost:5000"
 
-// export function UserContextProvider(props) {
-//     // const [loadingData, setLoadingData] = useState(true);
+export const UserContext = createContext();
 
+export function UserContextProvider(props) {
+    const [currentUser, setCurrentUser] = useState();
+    const [loadingData, setLoadingData] = useState(true);
 
+    const signUp = async (data) => {
+        var responseSent;
 
+        var userData = qs.stringify({
+            'name': data.value.name,
+            'email': data.value.email,
+            'password': data.value.password 
+          });
+          var config = {
+            method: 'post',
+            url: `${baseURL}/users/register`,
+            headers: { 
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data : userData
+          };
+          
+         await axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            responseSent = response.data
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        return responseSent
+    };
 
-//     useEffect(() => {
-       
-//     }, [])
+    const LogIn = async (data) => {
+        var responseSent;
 
-//     return (
-//         <UserContext.Provider value={{ signUp }}>
-//             {/* {!loadingData && props.children} */}
-//         </UserContext.Provider>
-//     );
-// }
+        var userData = qs.stringify({
+            'email': data.value.email,
+            'password': data.value.password
+          });
+          var config = {
+            method: 'post',
+            url: `${baseURL}/users/authenticate`,
+            headers: { 
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data : userData
+          };
+          
+         await axios(config)
+          .then(function (response) {
+            responseSent = response.data
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        return responseSent
+    };
+
+    useEffect(() => {}, []);
+
+    return (
+        <UserContext.Provider value={{ signUp, currentUser, LogIn }}>
+            {props.children}
+        </UserContext.Provider>
+    );
+}

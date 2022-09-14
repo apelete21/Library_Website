@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     display: block;
@@ -47,32 +49,66 @@ const Button = styled.button`
     font-weight: bold;
 `;
 
-function LogIn() {
-    const [userName, setUserName] = useState();
+function LogInFunc() {
+    const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [validation, setValidation] = useState();
+    const [blue, setBlue] = useState();
 
-    const handleUserName = (e) => {
-        setUserName(e.target.value);
+    const navigate = useNavigate()
+
+    const { LogIn } = useContext(UserContext);
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+        setValidation('')
     };
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
+        setValidation('')
     };
+
+    async function handleForm(e) {
+        e.preventDefault();
+
+        const userData = {
+            value: {
+                "email": email,
+                "password": password,
+            },
+        };
+
+        try {
+            const reqFunc = await LogIn(userData);
+            console.log(reqFunc);
+            if (reqFunc.status === 'success') {
+                setBlue("Login Successfull !");
+                setValidation('')
+                setTimeout(() => {
+                    navigate("/discover");
+                }, 2000);
+            } else setValidation(reqFunc.message)
+        } catch (error) {
+            console.log(error);
+            setValidation("There's an Error, Try again !");
+        }
+    }
 
     return (
         <Container>
             <H1 className="LoginTitle">LogIn</H1>
             <TextPar className="loginText">Welcome back</TextPar>
-            <Form className="form">
+            <Form className="form" onSubmit={handleForm}>
                 <Input
-                    type="text"
-                    placeholder="Username"
+                    type="email"
+                    placeholder="Email"
                     className="inputControl"
-                    value={userName}
-                    onChange={handleUserName}
+                    value={email}
+                    onChange={handleEmail}
                 ></Input>
                 <Input
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     className="inputControl"
                     value={password}
@@ -81,6 +117,26 @@ function LogIn() {
                 <Link to={"/retrivepassword"}>
                     <TextPar className="PassForget">Forgot Password ?</TextPar>
                 </Link>
+                <>
+                    <p
+                        style={{
+                            color: "red",
+                            marginTop: 4,
+                        }}
+                    >
+                        {" "}
+                        {validation}{" "}
+                    </p>
+                    <p
+                        style={{
+                            color: "green",
+                            marginTop: 4,
+                        }}
+                    >
+                        {" "}
+                        {blue}{" "}
+                    </p>
+                </>
                 <Button className="login loginBtn">Log In</Button>
             </Form>
             <TextPar className="LogToSign">
@@ -96,4 +152,4 @@ function LogIn() {
     );
 }
 
-export default LogIn;
+export default LogInFunc;
