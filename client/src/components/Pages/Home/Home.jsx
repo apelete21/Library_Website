@@ -3,6 +3,8 @@ import styled from "styled-components";
 import welImg from "../../../img/welcome.svg";
 import ArrowRight from "../../../img/ArrowRight.svg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     width: 100%;
@@ -41,6 +43,8 @@ const Button = styled.button`
 `;
 
 const Home = () => {
+    const { currentUser } = useContext(UserContext);
+
     return (
         <Container>
             <Welcome>
@@ -55,13 +59,21 @@ const Home = () => {
                     <img src={ArrowRight} className="arrowRight" alt="" />
                 </Button>
             </Link>
-            <Link to="/login">
-                <Button className="login">Log In</Button>
-            </Link>
-            <p className="orText">Or</p>
-            <Link to="/signup">
-                <Button className="login loginGoogle">Sign Up</Button>
-            </Link>
+            {!currentUser.name ? (
+                <>
+                    <Link to="/login">
+                        <Button className="login">Log In</Button>
+                    </Link>
+                    <p className="orText">Or</p>
+                    <Link to="/signup">
+                        <Button className="login loginGoogle">Sign Up</Button>
+                    </Link>
+                </>
+            ) : (
+                <Link to="/profile">
+                    <Button className="login">Profile</Button>
+                </Link>
+            )}
         </Container>
     );
 };

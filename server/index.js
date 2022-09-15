@@ -1,13 +1,14 @@
 const express = require('express');
 const logger = require('morgan');
-const movies = require('./routes/movies');
-const users = require('./routes/users');
+const users = require('./routes/user.route');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
-var jwt = require('jsonwebtoken');
+require('dotenv').config('./.env')
+const jwt = require('jsonwebtoken');
 const app = express();
-const cors = require('cors')
-app.set('secretKey', 'nodeRestApi'); // jwt secret token
+const cors = require('cors');
+const fileRoute = require('./routes/file.route');
+app.set('secretKey', 'libraryjsonwebtoken'); // jwt secret token
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(logger('dev'));
@@ -16,42 +17,17 @@ app.use(cors({
 }))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', function (req, res) {
-  res.json({ "message": "Can't get any data !" });
+  res.json({ "message": "Can't get any data from this route!!!" });
 });
 // public route
 app.use('/users', users);
+// File upload routes
+app.use('/file', fileRoute);
 // private route
-app.use('/movies', validateUser, movies);
 app.get('/favicon.ico', function (req, res) {
   res.sendStatus(204);
 });
-function validateUser(req, res, next) {
-  jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
-    if (err) {
-      res.json({ status: "error", message: err.message, data: null });
-    } else {
-      // add user id to request
-      req.body.userId = decoded.id;
-      next();
-    }
-  });
-
-}
-// private route
-app.use('/movies', validateUser, movies);
-function validateUser(req, res, next) {
-  jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
-    if (err) {
-      res.json({ status: "error", message: err.message, data: null });
-    } else {
-      // add user id to request
-      req.body.userId = decoded.id;
-      next();
-    }
-  });
-
-}
-// handle 404 error
+// error handling
 app.use(function (req, res, next) {
   let err = new Error('Not Found');
   err.status = 404;
