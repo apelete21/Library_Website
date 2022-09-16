@@ -9,6 +9,8 @@ const app = express();
 const cors = require('cors');
 const fileRoute = require('./routes/file.route');
 app.set('secretKey', 'libraryjsonwebtoken'); // jwt secret token
+// This help convert the id from string to ObjectId for the _id.
+const ObjectId = require("mongodb").ObjectId
 // connection to mongodb
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(logger('dev'));
@@ -21,8 +23,11 @@ app.get('/', function (req, res) {
 });
 // public route
 app.use('/users', users);
-// File upload routes
+// File upload or download routes
 app.use('/file', fileRoute);
+// categories routes
+const categoryRoute = require('./routes/categories.route')
+app.use('/categories', categoryRoute);
 // private route
 app.get('/favicon.ico', function (req, res) {
   res.sendStatus(204);
