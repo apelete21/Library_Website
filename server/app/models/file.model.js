@@ -22,7 +22,5 @@ const fileDataSchema = mongoose.Schema ({
         contentType: "String",
     }
 })
-fileDataSchema.post('find', function (next) {
-    this.fileImage.data = Buffer.toString(this.fileImage.data);
-});
+
 module.exports = fileDataModel = mongoose.model('fileDataModel', fileDataSchema)
