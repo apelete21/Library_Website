@@ -17,8 +17,16 @@ const fileDataSchema = mongoose.Schema ({
         type: "String",
         required: true,
     },
+    picture: {
+        type: "String",
+        required: true,
+    },
+    documentName: {
+        type: "String",
+        required: true,
+    },
     fileImage: {
-        data: Buffer,
+        type: "String",
         contentType: "String",
     }
 })

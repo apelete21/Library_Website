@@ -27,10 +27,7 @@ module.exports = {
                     synopsis: req.body.synopsis,
                     picture: req.body.picture,
                     documentName: req.body.docName,
-                    fileImage: {
-                        data: req.file.originalname,
-                        contentType: req.file.mimetype
-                    }
+                    fileImage: req.file.originalname
                 })
                 newFileData
                     .save()
@@ -40,14 +37,11 @@ module.exports = {
         })
     },
     downloadFileData: (req, res) => {
-        let  mydataimage;
         dbo.connection.collection("filedatamodels")
             .find({})
             .toArray(function (err, result) {
                 if (err) throw err;
                 res.json(result);
-                mydataimage = result
-                console.log(mydataimage)
             });
     }
 }
