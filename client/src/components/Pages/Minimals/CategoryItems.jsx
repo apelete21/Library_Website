@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useContext, useState, useEffect} from "react";
 import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
-import categories from "../../../dflt_cate";
+import { UserContext } from "../../context/UserContext";
+import axios from "axios";
 import books from "../../../dflt_list";
 import Item from "../Minimals/Item";
 
@@ -29,6 +30,7 @@ const CategorieEl = styled.p`
   align-items: center;
   border-radius: 19px;
   text-align: center;
+  text-transform: capitalize;
   font-weight: bold;
   padding: 4px 10px;
   vertical-align: middle;
@@ -42,6 +44,7 @@ const CategorieEl = styled.p`
 const Place = styled.p`
   width: 100vw;
   padding: 10px;
+  text-transform: capitalize;
   font-size: 25px;
   font-family: Arial, sans-serif;
   background-color: #5c5c5c;
@@ -64,16 +67,40 @@ const Items = styled.div`
 const CategoryItems = () => {
   const params = useParams();
 
+  const [categories, setCategories] = useState([]);
+
+    const { baseURL } = useContext(UserContext);
+
+    useEffect(() => {
+        var config = {
+            method: "get",
+            url: `${baseURL}/categories/lists`,
+            headers: {},
+        };
+
+        axios(config)
+            .then(function (response) {
+                setCategories(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+
+
   return (
     <>
       <Place>{params.name}</Place>
       <Container>
         <CategorieSection>
-          {categories.map((item, index) => (
-            <Link to={`/categories/${item.name}`} key={index}>
-              <CategorieEl>{item.name}</CategorieEl>
-            </Link>
-          ))}
+        {categories.map((item) => (
+                        <Link
+                            to={`/categories/${item.category_name}`}
+                            key={item.id}
+                        >
+                            <CategorieEl>{item.category_name}</CategorieEl>
+                        </Link>
+                    ))}
         </CategorieSection>
       </Container>
       <Items>

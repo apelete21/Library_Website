@@ -1,5 +1,7 @@
 const multer = require('multer')
 const fileDataModel = require('../models/file.model')
+const dbo = require('../../config/database')
+const fs = require("fs")
 // storage
 const Storage = multer.diskStorage({
     destination: 'public/pictures',
@@ -36,5 +38,16 @@ module.exports = {
                     .catch(err => res.json(err))
             }
         })
+    },
+    downloadFileData: (req, res) => {
+        let  mydataimage;
+        dbo.connection.collection("filedatamodels")
+            .find({})
+            .toArray(function (err, result) {
+                if (err) throw err;
+                res.json(result);
+                mydataimage = result
+                console.log(mydataimage)
+            });
     }
 }

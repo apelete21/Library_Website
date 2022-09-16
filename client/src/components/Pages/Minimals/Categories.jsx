@@ -1,69 +1,93 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
-import categories from "../../../dflt_cate";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
-  width: 100%;
-  margin-top: 10px;
-  background: #0000;
-  display: grid;
-  flex-wrap: wrap;
-  position: relative;
+    width: 100%;
+    margin-top: 10px;
+    background: #0000;
+    display: grid;
+    flex-wrap: wrap;
+    position: relative;
 `;
 
 const CategorieSection = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  overflow-y: scroll;
-  margin-inline: auto;
-  gap: 20px;
-  padding-inline: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: inherit;
+    max-width: 800px;
+    gap: 20px;
+    padding-inline: 10px;
 `;
-const CategorieEl = styled.p`
-  background-color: #555;
-  width: max-content;
-  word-wrap: none;
-  display: flex;
-  align-items: center;
-  border-radius: 19px;
-  text-align: center;
-  font-weight: bold;
-  padding: 4px 10px;
-  vertical-align: middle;
-  transition: all 0.3s;
+const CategorieEl = styled.div`
+    background-color: #555;
+    width: max-content;
+    text-transform: capitalize;
+    word-wrap: none;
+    display: flex;
+    align-items: center;
+    border-radius: 19px;
+    text-align: center;
+    font-weight: bold;
+    padding: 4px 10px;
+    vertical-align: middle;
+    transition: all 0.3s;
 
-  &:hover {
-    background-color: #333;
-  }
+    &:hover {
+        background-color: #333;
+    }
 `;
 
 const Place = styled.p`
-  width: 100vw;
-  padding: 10px;
-  font-size: 25px;
-  font-family: Arial, Geneva, sans-serif;
-  background-color: #474747;
-  font-weight: bold;
-`
+    width: 100vw;
+    padding: 10px;
+    text-transform: capitalize;
+    font-size: 25px;
+    font-family: Arial, Geneva, sans-serif;
+    background-color: #474747;
+    font-weight: bold;
+`;
 
 const Categories = () => {
-  
-  return (
-    <>
-    <Place>Categories</Place>
-      <Container>
-        <CategorieSection>
-          {categories.map((item, index) => (
-            <Link to={`/categories/${item.name}`} key={index}>
-              <CategorieEl>{item.name}</CategorieEl>
-            </Link>
-          ))}
-        </CategorieSection>
-      </Container>
-    </>
-  );
+    const [categories, setCategories] = useState([]);
+
+    const { baseURL } = useContext(UserContext);
+
+    useEffect(() => {
+        var config = {
+            method: "get",
+            url: `${baseURL}/categories/lists`,
+            headers: {},
+        };
+
+        axios(config)
+            .then(function (response) {
+                setCategories(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    });
+
+    return (
+        <>
+            <Place>Categories</Place>
+            <Container>
+                <CategorieSection>
+                    {categories.map((item) => (
+                        <Link className="listCategories"
+                            to={`/categories/${item.category_name}`}
+                            key={item.id}
+                        >
+                            <CategorieEl>{item.category_name}</CategorieEl>
+                        </Link>
+                    ))}
+                </CategorieSection>
+            </Container>
+        </>
+    );
 };
 
 export default Categories;
