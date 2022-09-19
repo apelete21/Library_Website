@@ -5,7 +5,6 @@ import axios from "axios";
 import Item from "../Minimals/Item";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-// import { useState } from "react";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -71,70 +70,35 @@ const Discover = () => {
     const [categories, setCategories] = useState([]);
     const [mydocData, setMyDocData] = useState([]);
 
-    const getData = () => {
-        // var config = {
-        //     method: "get",
-        //     url: `${baseURL}/categories/lists`,
-        //     headers: {},
-        // };
-
-        // axios(config)
-        //     .then(function (response) {
-        //         setCategories(response.data);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // var config1 = {
-        //     method: "get",
-        //     url: `${baseURL}/file/getAll`,
-        //     headers: {},
-        // };
-
-        // axios(config1)
-        //     .then(function (response) {
-        //         setMyDocData(response.data);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-    };
-
     const { baseURL } = useContext(UserContext);
 
     useState(() => {
-        // setTimeout(() => {
-            // return () => {
-                // getData()
+        var config = {
+            method: "get",
+            url: `${baseURL}/categories/lists`,
+            headers: {},
+        };
 
-                var config = {
-                    method: "get",
-                    url: `${baseURL}/categories/lists`,
-                    headers: {},
-                };
-        
-                axios(config)
-                    .then(function (response) {
-                        setCategories(response.data);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-                var config1 = {
-                    method: "get",
-                    url: `${baseURL}/file/getAll`,
-                    headers: {},
-                };
-        
-                axios(config1)
-                    .then(function (response) {
-                        setMyDocData(response.data);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            // }
-        // }, 1000);
+        axios(config)
+            .then(function (response) {
+                setCategories(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        var config1 = {
+            method: "get",
+            url: `${baseURL}/file/getAll`,
+            headers: {},
+        };
+
+        axios(config1)
+            .then(function (response) {
+                setMyDocData(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     });
 
     return (

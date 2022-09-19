@@ -78,33 +78,33 @@ const DlBtn = styled.button`
 
 const ItemPage = () => {
     const { id } = useParams();
-    const {baseURL} = useContext(UserContext)
+    const { baseURL } = useContext(UserContext);
     const [Item, setItem] = useState({});
-    // useEffect(() => {
-            // setTimeout(() => {
-                window.onload = () => {
-                    var config = {
-                        method: "get",
-                        url: `http://localhost:5000/file/getOne/${id}`,
-                        headers: {},
-                    };
-                
-                    axios(config)
-                        .then(function (response) {
-                            setItem(response.data)
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-            // }, 1000)
-    // }, [Item, id])
+    useState(() => {
+        var config = {
+            method: "get",
+            url: `${baseURL}/file/getOne/${id}`,
+            headers: {},
+        };
+
+        axios(config)
+            .then(function (response) {
+                setItem(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    })
     return (
         <>
             <Place>{Item.name}</Place>
             <Container className="elementData">
                 <ItemImage className="elementImage">
-                    <img src={`${baseURL}/file/get/${Item.picture}`} alt="" className="w-100 h-100" />
+                    <img
+                        src={`${baseURL}/file/get/${Item.picture}`}
+                        alt=""
+                        className="w-100 h-100"
+                    />
                 </ItemImage>
                 <ItemData>
                     <ItemName>{Item.name}</ItemName>

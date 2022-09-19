@@ -71,7 +71,7 @@ const CategoryItems = () => {
 
     const { baseURL } = useContext(UserContext);
 
-    useEffect(() => {
+    useState(() => {
         var config = {
             method: "get",
             url: `${baseURL}/categories/lists`,
