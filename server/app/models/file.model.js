@@ -24,10 +24,6 @@ const fileDataSchema = mongoose.Schema ({
     documentName: {
         type: "String",
         required: true,
-    },
-    fileImage: {
-        type: "String",
-        contentType: "String",
     }
 })
 

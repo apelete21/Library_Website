@@ -1,7 +1,9 @@
 const multer = require('multer')
 const fileDataModel = require('../models/file.model')
 const dbo = require('../../config/database')
-const fs = require("fs")
+const fs = require('fs');
+const path = require('path');
+const ObjectId = require('mongodb').ObjectId
 // storage
 const Storage = multer.diskStorage({
     destination: 'public/pictures',
@@ -26,8 +28,7 @@ module.exports = {
                     category: req.body.category,
                     synopsis: req.body.synopsis,
                     picture: req.body.picture,
-                    documentName: req.body.docName,
-                    fileImage: req.file.originalname
+                    documentName: req.body.docName
                 })
                 newFileData
                     .save()
@@ -39,9 +40,26 @@ module.exports = {
     downloadFileData: (req, res) => {
         dbo.connection.collection("filedatamodels")
             .find({})
-            .toArray(function (err, result) {
+            .toArray( function ( err, result) {
                 if (err) throw err;
-                res.json(result);
+                res.json(result)
             });
+    },
+    downloadOneFileData: (req, res) => {
+        dbo.connection.collection("filedatamodels")
+            .findOne({ _id: ObjectId(req.params.id)}, function ( err, result) {
+                if (err) throw err;
+                res.json(result)
+            });
+    },
+    donwloadFileImage: (req, res) => {
+        try {
+            res.set({
+              'Content-Type': 'image/png'
+            });
+            res.sendFile(path.join(__dirname, '../../public/pictures', req.params.picture));
+          } catch (error) {
+            res.status(400).send('Error while downloading file. Try again later.');
+          }
     }
 }

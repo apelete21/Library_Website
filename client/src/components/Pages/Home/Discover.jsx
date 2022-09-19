@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import books from "../../../dflt_list";
 import axios from "axios";
 import Item from "../Minimals/Item";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useEffect } from "react";
+// import { useState } from "react";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -16,7 +15,7 @@ const Container = styled.div`
     display: grid;
     flex-wrap: wrap;
     position: relative;
-    justify-content: center;
+    justify-content: space-evenly;
 `;
 
 const CategorieSection = styled.div`
@@ -70,23 +69,72 @@ const Items = styled.div`
 
 const Discover = () => {
     const [categories, setCategories] = useState([]);
+    const [mydocData, setMyDocData] = useState([]);
+
+    const getData = () => {
+        // var config = {
+        //     method: "get",
+        //     url: `${baseURL}/categories/lists`,
+        //     headers: {},
+        // };
+
+        // axios(config)
+        //     .then(function (response) {
+        //         setCategories(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        // var config1 = {
+        //     method: "get",
+        //     url: `${baseURL}/file/getAll`,
+        //     headers: {},
+        // };
+
+        // axios(config1)
+        //     .then(function (response) {
+        //         setMyDocData(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+    };
 
     const { baseURL } = useContext(UserContext);
 
-    useEffect(() => {
-        var config = {
-            method: "get",
-            url: `${baseURL}/categories/lists`,
-            headers: {},
-        };
+    useState(() => {
+        // setTimeout(() => {
+            // return () => {
+                // getData()
 
-        axios(config)
-            .then(function (response) {
-                setCategories(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                var config = {
+                    method: "get",
+                    url: `${baseURL}/categories/lists`,
+                    headers: {},
+                };
+        
+                axios(config)
+                    .then(function (response) {
+                        setCategories(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                var config1 = {
+                    method: "get",
+                    url: `${baseURL}/file/getAll`,
+                    headers: {},
+                };
+        
+                axios(config1)
+                    .then(function (response) {
+                        setMyDocData(response.data);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            // }
+        // }, 1000);
     });
 
     return (
@@ -105,11 +153,18 @@ const Discover = () => {
                 </CategorieSection>
             </Container>
             <Items>
-                {books.map((item, index) => (
+                {mydocData.map((item) => (
                     <Item
-                        key={index}
-                        id={item.id}
-                        picture={item.picture}
+                        id={item._id}
+                        key={item._id}
+                        name={item.name}
+                        picture={
+                            item.picture
+                            // && `data:image/png;base64,${
+                            //     getPicture(item.picture)
+                            // }`
+                        }
+                        // picture={`${baseURL}/file/get/${item.picture}`}
                         author={item.author}
                     />
                 ))}

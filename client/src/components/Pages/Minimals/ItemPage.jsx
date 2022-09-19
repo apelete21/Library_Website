@@ -1,8 +1,9 @@
-import React from "react";
-import book from "../../../dflt_itm";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
-
 import styled from "styled-components";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     width: 100%;
@@ -76,31 +77,52 @@ const DlBtn = styled.button`
 `;
 
 const ItemPage = () => {
-    const params = useParams();
+    const { id } = useParams();
+    const {baseURL} = useContext(UserContext)
+    const [Item, setItem] = useState({});
+    // useEffect(() => {
+            // setTimeout(() => {
+                window.onload = () => {
+                    var config = {
+                        method: "get",
+                        url: `http://localhost:5000/file/getOne/${id}`,
+                        headers: {},
+                    };
+                
+                    axios(config)
+                        .then(function (response) {
+                            setItem(response.data)
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            // }, 1000)
+    // }, [Item, id])
     return (
         <>
-            <Place>{params.id}</Place>
+            <Place>{Item.name}</Place>
             <Container className="elementData">
                 <ItemImage className="elementImage">
-                    <img src={book.picture} alt="" className="w-100 h-100" />
+                    <img src={`${baseURL}/file/get/${Item.picture}`} alt="" className="w-100 h-100" />
                 </ItemImage>
                 <ItemData>
-                    <ItemName>{book.name}</ItemName>
+                    <ItemName>{Item.name}</ItemName>
                     <ItemAuth>
-                        by <b> {book.author} </b>
+                        by <b> {Item.author} </b>
                     </ItemAuth>
 
                     <ItemDesc>
                         {" "}
                         <h2>
-                          <b>Synopsis</b> <br />
-                          </h2>
+                            <b>Synopsis</b> <br />
+                        </h2>
                         <p
                             style={{
                                 marginTop: 12,
                             }}
                         >
-                            {book.describe}
+                            {Item.synopsis}
                         </p>{" "}
                     </ItemDesc>
                     <DlBtn>Download</DlBtn>

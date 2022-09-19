@@ -2,14 +2,13 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 
-
 export const UserContext = createContext();
 
 export function UserContextProvider(props) {
-  const [currentUser, setCurrentUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
-  const baseURL = "http://localhost:5000";
-  
+    const [currentUser, setCurrentUser] = useState({});
+    const [loggedIn, setLoggedIn] = useState(false);
+    const baseURL = "http://localhost:5000";
+
     const signUp = async (data) => {
         var responseSent;
 
@@ -66,17 +65,17 @@ export function UserContextProvider(props) {
         return responseSent;
     };
 
-    useEffect(() => {
-        var local = localStorage.getItem("user");
-        console.log(local);
-    }, []);
+    // useEffect(() => {
+    //     var local = localStorage.getItem("user");
+    //     console.log(local);
+    // }, []);
 
     const logOut = () => {
         setLoggedIn(false);
         setCurrentUser({});
         localStorage.removeItem("user");
-    }
-    
+    };
+
     return (
         <UserContext.Provider
             value={{
