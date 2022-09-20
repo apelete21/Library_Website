@@ -36,8 +36,6 @@ const ItemImage = styled.div`
     max-width: 400px;
     margin-inline: auto;
     overflow: hidden;
-    border-radius: 13px;
-    overflow: hidden;
 `;
 
 const ItemData = styled.div`
@@ -104,8 +102,11 @@ const ItemPage = () => {
     return (
         <>
             <Place>{Item.name}</Place>
-            {!Item ? (
-                "Loading"
+            {!Item.name ? (
+                <p style={{
+                    textAlign: 'center',
+                    fontWeight: 'bold'
+                }}>Loading</p>
             ) : (
                 <Container className="elementData">
                     <ItemImage className="elementImage">

@@ -6,13 +6,14 @@ import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background: #444;
     border-radius: 20px;
     overflow: hidden;
     width: 48%;
     height: max-content;
-    min-height: 400px;
+    align-content: space-between;
+    min-height: 350px;
 `;
 
 const Name = styled.p`
@@ -45,16 +46,14 @@ export default function Item(props) {
                             src={`${baseURL}/file/get/${props.picture}`}
                             alt="docImage"
                             className="w-100 h-100"
-                            style={{
-                                objectFit: "cover",
-                                objectPosition: "center center",
-                            }}
                         />
                     </ImageContainer>
-                    <Name>{props.name}</Name>
-                    <Author>
-                        by <b>{props.author}</b>
-                    </Author>
+                    <div>
+                        <Name>{props.name}</Name>
+                        <Author>
+                            by <b>{props.author}</b>
+                        </Author>
+                    </div>
                 </Link>
             </Container>
         </>

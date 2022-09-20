@@ -14,6 +14,7 @@ import CategoryItems from "./components/Pages/Minimals/CategoryItems";
 import ItemPage from "./components/Pages/Minimals/ItemPage";
 import { useContext } from "react";
 import { UserContext } from "./components/context/UserContext";
+import Profile from "./components/Pages/Minimals/Profile";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -23,8 +24,14 @@ const Wrapper = styled.div`
     padding: 45px 0 30px;
 `;
 
+const LoggedText = styled.p`
+    text-align: center;
+    margin: 20px auto;
+    font-size: 30px;
+`
+
 const App = () => {
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, loggedIn } = useContext(UserContext);
 
     return (
         <>
@@ -58,9 +65,12 @@ const App = () => {
                         path="/categories/:name/:id"
                         element={<ItemPage />}
                     />
-                    {currentUser.name && (
-                        <Route path="/profile" element={<></>} />
-                    )}
+                    <Route
+                        path="/profile"
+                        element={
+                            loggedIn ? <Profile /> : <LoggedText>Not Logged In !!!</LoggedText>
+                        }
+                    />
                 </Routes>
             </Wrapper>
         </>

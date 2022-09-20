@@ -65,6 +65,18 @@ body {
   height: 70%;
 }
 
+.fwb{
+  font-weight: bold;
+}
+
+.tac{
+  text-align: center;
+}
+
+.mt-20{
+  margin-top: 20px;
+}
+
 .discover {
   margin: 20px auto 40px;
   padding: 4px 0;
@@ -283,3 +295,28 @@ img {
 }
 
 /* loadding */
+
+/* UserPage */
+.userelPlace{
+  border-radius: 5px;
+  background: #535353aa;
+  margin-inline: auto;
+  margin-top: 15px;
+  padding: 7px;
+  width: max-content;
+  max-width: 90%;
+  min-width: 120px;
+  word-wrap: break-word;
+  overflow: hidden;
+  display: block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+@media (min-width: 800px) {
+  .userContainer{
+    display: flex;
+  }
+}
+/* UserPage */

@@ -115,17 +115,23 @@ const CategoryItems = () => {
                     ))}
                 </CategorieSection>
             </Container>
-            <Items>
-                {catData.map((item) => (
-                    <Item
-                        id={item._id}
-                        key={item._id}
-                        name={item.name}
-                        picture={item.picture}
-                        author={item.author}
-                    />
-                ))}
-            </Items>
+            {catData.length > 0 ? (
+                <Items>
+                    {catData.map((item) => (
+                        <Item
+                            id={item._id}
+                            key={item._id}
+                            name={item.name}
+                            picture={item.picture}
+                            author={item.author}
+                        />
+                    ))}
+                </Items>
+            ) : (
+                <p style={{
+                  textAlign: "center"
+                }}>No data found for this Category</p>
+            )}
         </>
     );
 };

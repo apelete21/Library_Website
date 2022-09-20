@@ -8,6 +8,7 @@ export function UserContextProvider(props) {
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const baseURL = "http://localhost:5000";
+    const [userToken, setUserToken] = useState()
 
     const signUp = async (data) => {
         var responseSent;
@@ -56,7 +57,8 @@ export function UserContextProvider(props) {
             .then(function (response) {
                 responseSent = response.data;
                 setCurrentUser(response.data.data.user);
-                localStorage.setItem("user", response.data.data);
+                setUserToken(response.data.data.token)
+                localStorage.setItem("data", response.data.data);
                 setLoggedIn(true);
             })
             .catch(function (error) {
@@ -65,15 +67,16 @@ export function UserContextProvider(props) {
         return responseSent;
     };
 
-    // useEffect(() => {
-    //     var local = localStorage.getItem("user");
-    //     console.log(local);
-    // }, []);
+    useEffect(() => {
+        var local = localStorage.getItem("data");
+        console.log(local);
+        console.log(userToken)
+    });
 
     const logOut = () => {
         setLoggedIn(false);
         setCurrentUser({});
-        localStorage.removeItem("user");
+        localStorage.removeItem("data");
     };
 
     return (
@@ -84,7 +87,8 @@ export function UserContextProvider(props) {
                 LogIn,
                 logOut,
                 loggedIn,
-                baseURL
+                baseURL,
+                userToken
             }}
         >
             {props.children}
