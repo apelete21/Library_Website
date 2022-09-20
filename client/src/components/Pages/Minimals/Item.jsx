@@ -7,13 +7,13 @@ import { UserContext } from "../../context/UserContext";
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    background: #444;
+    background: #1c7ebb;
     border-radius: 20px;
     overflow: hidden;
     width: 48%;
     height: max-content;
     align-content: space-between;
-    min-height: 350px;
+    height: 380px;
 `;
 
 const Name = styled.p`
@@ -25,7 +25,7 @@ const Name = styled.p`
 const Author = styled.p`
     font-size: 0.7em;
     padding: 0% 7% 5%;
-    color: #42bff1;
+    color: #232323;
     font-weight: 400;
 `;
 

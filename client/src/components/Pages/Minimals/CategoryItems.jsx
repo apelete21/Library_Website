@@ -6,7 +6,7 @@ import axios from "axios";
 import Item from "../Minimals/Item";
 
 const Container = styled.div`
-    width: 98%;
+    width: 100%;
     margin-top: 10px;
     background: #0000;
     display: grid;
@@ -22,7 +22,7 @@ const CategorieSection = styled.div`
     padding-inline: 10px;
 `;
 const CategorieEl = styled.p`
-    background-color: #4e4e4e;
+    background-color: #3290FF;
     width: max-content;
     word-wrap: none;
     display: flex;
@@ -46,13 +46,13 @@ const Place = styled.p`
     text-transform: capitalize;
     font-size: 25px;
     font-family: Arial, sans-serif;
-    background-color: #5c5c5c;
+    background-color: #3290FF;
     font-weight: bold;
 `;
 
 const Items = styled.div`
     height: 79vh;
-    width: 98%;
+    width: 94%;
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;

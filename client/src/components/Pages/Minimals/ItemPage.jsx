@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
@@ -22,7 +22,7 @@ const Place = styled.p`
     padding: 10px;
     font-size: 25px;
     font-family: Arial, sans-serif;
-    background-color: #5c5c5c;
+    background-color: #3290FF;
     position: sticky;
     top: 0;
     z-index: +3;
@@ -35,13 +35,13 @@ const ItemImage = styled.div`
     flex-grow: 0;
     max-width: 400px;
     margin-inline: auto;
-    overflow: hidden;
 `;
 
 const ItemData = styled.div`
     width: 100%;
-    max-width: 1500px;
+    max-width: 1400px;
     flex-grow: 1;
+    overflow: scroll;
     margin-top: 3vh;
     display: grid;
     justify-content: center;
@@ -71,7 +71,7 @@ const DlBtn = styled.button`
     width: 90%;
     max-width: 380px;
     margin-inline: auto;
-    background: #636363;
+    background: #FE756C;
     font-weight: bold;
     font-size: 18px;
     border-radius: 10px;
@@ -84,7 +84,7 @@ const ItemPage = () => {
     const { id } = useParams();
     const { baseURL } = useContext(UserContext);
     const [Item, setItem] = useState({});
-    useState(() => {
+    useEffect(() => {
         var config = {
             method: "get",
             url: `${baseURL}/file/getOne/${id}`,
@@ -98,15 +98,23 @@ const ItemPage = () => {
             .catch(function (error) {
                 console.log(error);
             });
-    });
+    }, [baseURL, id]);
+
+    const downloadFile = async () => {
+        window.location = `${baseURL}/pdf/download/${Item.documentName}`;
+    };
     return (
         <>
             <Place>{Item.name}</Place>
             {!Item.name ? (
-                <p style={{
-                    textAlign: 'center',
-                    fontWeight: 'bold'
-                }}>Loading</p>
+                <p
+                    style={{
+                        textAlign: "center",
+                        fontWeight: "bold",
+                    }}
+                >
+                    Loading
+                </p>
             ) : (
                 <Container className="elementData">
                     <ItemImage className="elementImage">
@@ -135,7 +143,7 @@ const ItemPage = () => {
                                 {Item.synopsis}
                             </p>{" "}
                         </ItemDesc>
-                        <DlBtn>Download</DlBtn>
+                        <DlBtn onClick={() => downloadFile()}>Download</DlBtn>
                     </ItemData>
                 </Container>
             )}

@@ -8,7 +8,8 @@ export function UserContextProvider(props) {
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const baseURL = "http://localhost:5000";
-    const [userToken, setUserToken] = useState()
+    const [userToken, setUserToken] = useState();
+    const [tokenExpirationTime, setTokenExpirationTime] = useState();
 
     const signUp = async (data) => {
         var responseSent;
@@ -57,9 +58,20 @@ export function UserContextProvider(props) {
             .then(function (response) {
                 responseSent = response.data;
                 setCurrentUser(response.data.data.user);
-                setUserToken(response.data.data.token)
-                localStorage.setItem("data", response.data.data);
+                setUserToken(response.data.data.token);
+                // localStorage.setItem("data", response.data.data);
                 setLoggedIn(true);
+                const expiration = new Date(
+                    new Date().getTime() + 1000 * 60 * 60
+                );
+                setTokenExpirationTime(expiration); //set expiration time one hour from current time
+                localStorage.setItem(
+                    "userData",
+                    JSON.stringify({
+                        currentUser,
+                        expirationTime: expiration.toISOString(),
+                    })
+                );
             })
             .catch(function (error) {
                 console.log(error);
@@ -68,15 +80,22 @@ export function UserContextProvider(props) {
     };
 
     useEffect(() => {
-        var local = localStorage.getItem("data");
-        console.log(local);
-        console.log(userToken)
+        const storedData = JSON.parse(localStorage.getItem("userData"));
+        if (
+            storedData &&
+            storedData.token &&
+            new Date(storedData.expirationTime) > new Date()
+        ) {
+            LogIn(storedData.currentUser);
+        }
     });
 
     const logOut = () => {
         setLoggedIn(false);
-        setCurrentUser({});
-        localStorage.removeItem("data");
+        setCurrentUser(null);
+        setUserToken(null);
+        setTokenExpirationTime(null);
+        localStorage.removeItem("userData");
     };
 
     return (
@@ -88,7 +107,7 @@ export function UserContextProvider(props) {
                 logOut,
                 loggedIn,
                 baseURL,
-                userToken
+                userToken,
             }}
         >
             {props.children}

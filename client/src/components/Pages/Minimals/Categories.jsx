@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ const CategorieSection = styled.div`
     padding-inline: 10px;
 `;
 const CategorieEl = styled.div`
-    background-color: #555;
+    background-color: #005ec9;
     width: max-content;
     text-transform: capitalize;
     word-wrap: none;
@@ -46,7 +46,7 @@ const Place = styled.p`
     text-transform: capitalize;
     font-size: 25px;
     font-family: Arial, Geneva, sans-serif;
-    background-color: #474747;
+    background-color: #3290FF;
     font-weight: bold;
 `;
 

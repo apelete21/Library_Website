@@ -28,11 +28,9 @@ button {
 body {
   width: 100vw;
   height: 100vh;
-  /* background: linear-gradient(358.36deg, #2282f8ea 10.06%, #ff6745a1 138.32%); */
-  background-color: #353535;
-  /* url(./img/background.png); */
+  background: linear-gradient(358.36deg, rgba(34, 130, 248, 0.797) 5.06%, rgba(255, 103, 69, 0.785) 138.32%), url(./img/background.png);
   background-position: center;
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(8px);
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
@@ -65,15 +63,15 @@ body {
   height: 70%;
 }
 
-.fwb{
+.fwb {
   font-weight: bold;
 }
 
-.tac{
+.tac {
   text-align: center;
 }
 
-.mt-20{
+.mt-20 {
   margin-top: 20px;
 }
 
@@ -92,7 +90,7 @@ body {
   background: #32a6ff;
   border-radius: 21px;
   color: white;
-  padding-block: 5px;
+  padding-block: 10px;
   font-size: 1em;
 }
 
@@ -102,15 +100,15 @@ body {
 }
 
 .loginGoogle {
-  margin-block: 20px;
-  padding: 5px 0;
+  margin-block: 10px;
+  padding: 10px 0;
   background: #FE756C;
   color: #fff;
   font-size: 1em;
   gap: 10px;
 }
 
-.listCategories{
+.listCategories {
   width: fit-content;
 }
 
@@ -193,10 +191,10 @@ body {
 }
 
 .menuItems {
-  background: #444;
-  width: 85%;
+  background: linear-gradient(180deg, rgba(255, 125, 96, 0.989) 2%, rgba(34, 130, 248, 0.954) 60%);
+  width: 100%;
   height: calc(100vh - 100%);
-  max-width: 400px;
+  max-width: 500px;
   padding-inline: 2em;
   padding-block: 30px;
   text-align: right;
@@ -277,9 +275,10 @@ img {
 @media (max-width: 500px) {
   .elementData {
     display: grid;
+    overflow: hidden;
   }
 
-  .elementImage{
+  .elementImage {
     margin-inline: auto;
     padding: 0;
   }
@@ -289,7 +288,7 @@ img {
 
 /* loadding */
 
-.loading{
+.loading {
   height: 100%;
   display: grid;
 }
@@ -297,7 +296,7 @@ img {
 /* loadding */
 
 /* UserPage */
-.userelPlace{
+.userelPlace {
   border-radius: 5px;
   background: #535353aa;
   margin-inline: auto;
@@ -314,9 +313,11 @@ img {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
 @media (min-width: 800px) {
-  .userContainer{
+  .userContainer {
     display: flex;
   }
 }
+
 /* UserPage */

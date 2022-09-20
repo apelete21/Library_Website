@@ -25,7 +25,7 @@ const CategorieSection = styled.div`
 `;
 
 const CategorieEl = styled.p`
-    background-color: #484848;
+    background-color: #3290FF;
     width: max-content;
     text-transform: capitalize;
     word-wrap: none;
@@ -48,22 +48,22 @@ const Place = styled.p`
     padding: 10px;
     font-size: 25px;
     font-family: Arial, sans-serif;
-    background-color: #5c5c5c;
+    background-color: #3290FF;
     font-weight: bold;
 `;
 
 const Items = styled.div`
     height: 79vh;
-    width: 95%;
+    width: 94%;
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: space-evenly;
     margin: 0 auto;
     padding-block: 2vh;
     column-gap: 2%;
-    row-gap: 4%;
+    row-gap: 6%;
 `;
 
 const Discover = () => {

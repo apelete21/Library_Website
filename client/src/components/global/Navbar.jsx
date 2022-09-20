@@ -9,13 +9,12 @@ const Container = styled.div`
     min-height: 45px;
     max-height: 50px;
     padding: 8px 10px;
-    z-index: 20;
-    /* overflow-x: hidden; */
+    z-index: 50;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     top: 0;
-    background: #222;
+    background: #A76D7B;
 `;
 
 const Burger = styled.div`
@@ -121,7 +120,7 @@ function Navbar() {
                             <p className="orText">Or</p>
                             <Link to="/signup">
                                 <Button
-                                    className="login"
+                                    className="login loginGoogle"
                                     onClick={() => ToggleNavigation()}
                                 >
                                     Sign Up

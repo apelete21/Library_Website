@@ -1,7 +1,6 @@
 const multer = require('multer')
 const fileDataModel = require('../models/file.model')
 const dbo = require('../../config/database')
-const fs = require('fs');
 const path = require('path');
 const ObjectId = require('mongodb').ObjectId
 // storage
