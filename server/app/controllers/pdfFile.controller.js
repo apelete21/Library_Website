@@ -18,7 +18,7 @@ const upload = multer({
 }).single('file')
 
 module.exports = {
-    pdfUpload: (req, res, next) => {
+    pdfUpload: () => {
         upload((res, next) => {
             if (err) next(err)
             res.json({

@@ -272,7 +272,7 @@ img {
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
   .elementData {
     display: grid;
     overflow: hidden;
@@ -298,7 +298,7 @@ img {
 /* UserPage */
 .userelPlace {
   border-radius: 5px;
-  background: #535353aa;
+  background: #f4f4f420;
   margin-inline: auto;
   margin-top: 15px;
   padding: 7px;

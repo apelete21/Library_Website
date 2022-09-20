@@ -9,7 +9,7 @@ const Place = styled.p`
     padding: 10px;
     font-size: 25px;
     font-family: "Poppins", sans-serif;
-    background-color: #5c5c5c;
+    background-color: #3290FF;
     position: sticky;
     top: 0;
     z-index: +3;
