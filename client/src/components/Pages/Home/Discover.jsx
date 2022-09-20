@@ -122,13 +122,7 @@ const Discover = () => {
                         id={item._id}
                         key={item._id}
                         name={item.name}
-                        picture={
-                            item.picture
-                            // && `data:image/png;base64,${
-                            //     getPicture(item.picture)
-                            // }`
-                        }
-                        // picture={`${baseURL}/file/get/${item.picture}`}
+                        picture={item.picture}
                         author={item.author}
                     />
                 ))}

@@ -7,6 +7,10 @@ import { UserContext } from "../../context/UserContext";
 
 const Container = styled.div`
     width: 100%;
+    max-width: 1300px;
+    margin-inline: auto;
+    margin-top: 5%;
+    align-items: center;
     overflow: scroll;
     padding: 20px 0px;
     position: relative;
@@ -27,10 +31,12 @@ const Place = styled.p`
 
 const ItemImage = styled.div`
     width: 70vw;
+    height: auto;
     flex-grow: 0;
     max-width: 400px;
     margin-inline: auto;
-    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 13px;
     overflow: hidden;
 `;
 
@@ -94,40 +100,44 @@ const ItemPage = () => {
             .catch(function (error) {
                 console.log(error);
             });
-    })
+    });
     return (
         <>
             <Place>{Item.name}</Place>
-            <Container className="elementData">
-                <ItemImage className="elementImage">
-                    <img
-                        src={`${baseURL}/file/get/${Item.picture}`}
-                        alt=""
-                        className="w-100 h-100"
-                    />
-                </ItemImage>
-                <ItemData>
-                    <ItemName>{Item.name}</ItemName>
-                    <ItemAuth>
-                        by <b> {Item.author} </b>
-                    </ItemAuth>
+            {!Item ? (
+                "Loading"
+            ) : (
+                <Container className="elementData">
+                    <ItemImage className="elementImage">
+                        <img
+                            src={`${baseURL}/file/get/${Item.picture}`}
+                            alt=""
+                            className="w-100 h-100"
+                        />
+                    </ItemImage>
+                    <ItemData>
+                        <ItemName>{Item.name}</ItemName>
+                        <ItemAuth>
+                            by <b> {Item.author} </b>
+                        </ItemAuth>
 
-                    <ItemDesc>
-                        {" "}
-                        <h2>
-                            <b>Synopsis</b> <br />
-                        </h2>
-                        <p
-                            style={{
-                                marginTop: 12,
-                            }}
-                        >
-                            {Item.synopsis}
-                        </p>{" "}
-                    </ItemDesc>
-                    <DlBtn>Download</DlBtn>
-                </ItemData>
-            </Container>
+                        <ItemDesc>
+                            {" "}
+                            <h2>
+                                <b>Synopsis</b> <br />
+                            </h2>
+                            <p
+                                style={{
+                                    marginTop: 12,
+                                }}
+                            >
+                                {Item.synopsis}
+                            </p>{" "}
+                        </ItemDesc>
+                        <DlBtn>Download</DlBtn>
+                    </ItemData>
+                </Container>
+            )}
         </>
     );
 };

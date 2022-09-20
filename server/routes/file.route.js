@@ -5,4 +5,5 @@ router.post('/upload', fileContoller.uploadFileData);
 router.get('/get/:picture', fileContoller.donwloadFileImage);
 router.get('/getOne/:id', fileContoller.downloadOneFileData);
 router.get('/getAll', fileContoller.downloadFileData);
+router.get('/category/:name', fileContoller.getbyCategory);
 module.exports = router;

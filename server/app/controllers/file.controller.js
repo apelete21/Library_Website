@@ -40,14 +40,14 @@ module.exports = {
     downloadFileData: (req, res) => {
         dbo.connection.collection("filedatamodels")
             .find({})
-            .toArray( function ( err, result) {
+            .toArray(function (err, result) {
                 if (err) throw err;
                 res.json(result)
             });
     },
     downloadOneFileData: (req, res) => {
         dbo.connection.collection("filedatamodels")
-            .findOne({ _id: ObjectId(req.params.id)}, function ( err, result) {
+            .findOne({ _id: ObjectId(req.params.id) }, function (err, result) {
                 if (err) throw err;
                 res.json(result)
             });
@@ -55,11 +55,19 @@ module.exports = {
     donwloadFileImage: (req, res) => {
         try {
             res.set({
-              'Content-Type': 'image/png'
+                'Content-Type': 'image/png'
             });
             res.sendFile(path.join(__dirname, '../../public/pictures', req.params.picture));
-          } catch (error) {
+        } catch (error) {
             res.status(400).send('Error while downloading file. Try again later.');
-          }
+        }
+    },
+    getbyCategory: (req, res) => {
+        dbo.connection.collection("filedatamodels")
+            .find({ category: req.params.name })
+            .toArray(function (err, result) {
+                if (err) res.json({ error: err });
+                res.json(result)
+            });
     }
 }

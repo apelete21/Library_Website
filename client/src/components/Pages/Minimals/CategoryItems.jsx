@@ -3,11 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
-import books from "../../../dflt_list";
 import Item from "../Minimals/Item";
 
 const Container = styled.div`
-    width: 100%;
+    width: 98%;
     margin-top: 10px;
     background: #0000;
     display: grid;
@@ -60,7 +59,7 @@ const Items = styled.div`
     flex-wrap: wrap;
     margin: 0 auto;
     padding-block: 2vh;
-    column-gap: 2%;
+    column-gap: 4%;
     row-gap: 4%;
 `;
 
@@ -68,24 +67,38 @@ const CategoryItems = () => {
     const params = useParams();
 
     const [categories, setCategories] = useState([]);
+    const [catData, setCatData] = useState([]);
 
     const { baseURL } = useContext(UserContext);
 
-    useState(() => {
-        var config = {
+    useEffect(() => {
+        var config1 = {
             method: "get",
             url: `${baseURL}/categories/lists`,
             headers: {},
         };
 
-        axios(config)
+        axios(config1)
             .then(function (response) {
                 setCategories(response.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
-    });
+        var config = {
+            method: "get",
+            url: `${baseURL}/file/category/${params.name}`,
+            headers: {},
+        };
+
+        axios(config)
+            .then(function (response) {
+                setCatData(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }, [params.name, baseURL]);
 
     return (
         <>
@@ -95,7 +108,7 @@ const CategoryItems = () => {
                     {categories.map((item) => (
                         <Link
                             to={`/categories/${item.category_name}`}
-                            key={item.id}
+                            key={item._id}
                         >
                             <CategorieEl>{item.category_name}</CategorieEl>
                         </Link>
@@ -103,10 +116,11 @@ const CategoryItems = () => {
                 </CategorieSection>
             </Container>
             <Items>
-                {books.map((item, index) => (
+                {catData.map((item) => (
                     <Item
-                        key={index}
-                        id={item.id}
+                        id={item._id}
+                        key={item._id}
+                        name={item.name}
                         picture={item.picture}
                         author={item.author}
                     />

@@ -12,7 +12,7 @@ const Container = styled.div`
     overflow: hidden;
     width: 48%;
     height: max-content;
-    min-height: 300px;
+    min-height: 400px;
 `;
 
 const Name = styled.p`
@@ -29,7 +29,6 @@ const Author = styled.p`
 `;
 
 const ImageContainer = styled.div`
-flex-grow: 1;
     width: 100%;
     height: 250px;
     overflow: hidden;
@@ -47,8 +46,8 @@ export default function Item(props) {
                             alt="docImage"
                             className="w-100 h-100"
                             style={{
-                              objectFit: "cover",
-                              objectPosition: 'center center'
+                                objectFit: "cover",
+                                objectPosition: "center center",
                             }}
                         />
                     </ImageContainer>
