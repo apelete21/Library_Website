@@ -22,7 +22,7 @@ const Place = styled.p`
     padding: 10px;
     font-size: 25px;
     font-family: Arial, sans-serif;
-    background-color: #3290FF;
+    background-color: #3290ff;
     position: sticky;
     top: 0;
     z-index: +3;
@@ -71,7 +71,7 @@ const DlBtn = styled.button`
     width: 90%;
     max-width: 380px;
     margin-inline: auto;
-    background: #FE756C;
+    background: #fe756c;
     font-weight: bold;
     font-size: 18px;
     border-radius: 10px;
@@ -84,6 +84,8 @@ const ItemPage = () => {
     const { id } = useParams();
     const { baseURL } = useContext(UserContext);
     const [Item, setItem] = useState({});
+    const [downloadStat, setDownloadStat] = useState();
+    const [dlding, setDlding] = useState();
     useEffect(() => {
         var config = {
             method: "get",
@@ -101,8 +103,27 @@ const ItemPage = () => {
     }, [baseURL, id]);
 
     const downloadFile = async () => {
-        window.location = `${baseURL}/pdf/download/${Item.documentName}`;
+        setDlding("Downloading");
+        setDownloadStat(null);
+        fetch(`${baseURL}/pdffile/${Item.documentName}`)
+            .then((res) => {
+                if (res.status === 404) {
+                    setDownloadStat("Download failed");
+                    setDlding(null);
+                } else return res.blob();
+            })
+            .then((data) => {
+                var a = document.createElement("a");
+                a.style.display = "none";
+                a.href = window.URL.createObjectURL(data);
+                a.download = `${Item.documentName}`;
+                a.click();
+                a.remove();
+                setDlding(null);
+            })
+            .catch((error) => console.log("error", error));
     };
+
     return (
         <>
             <Place>{Item.name}</Place>
@@ -143,7 +164,17 @@ const ItemPage = () => {
                                 {Item.synopsis}
                             </p>{" "}
                         </ItemDesc>
-                        <DlBtn onClick={() => downloadFile()}>Download</DlBtn>
+                        <DlBtn onClick={() => downloadFile()}>
+                            {!dlding ? "Download" : dlding}
+                        </DlBtn>
+                        <p
+                            style={{
+                                textAlign: "center",
+                            }}
+                        >
+                            {" "}
+                            {downloadStat}{" "}
+                        </p>
                     </ItemData>
                 </Container>
             )}

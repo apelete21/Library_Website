@@ -3,6 +3,7 @@ const logger = require('morgan');
 const users = require('./routes/user.route');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
+const fs = require('fs')
 require('dotenv').config('./.env')
 const jwt = require('jsonwebtoken');
 const app = express();
@@ -16,7 +17,89 @@ app.use(logger('dev'));
 app.use(cors({
   'origin': '*'
 }))
-app.use(bodyParser.urlencoded({ extended: false }));
+const mongooseDefault = require("mongoose");
+const multer = require("multer");
+const {
+  GridFsStorage
+} = require("multer-gridfs-storage");
+
+require("dotenv")
+  .config('.env');
+
+const mongouri = process.env.ATLAS_URI;
+// try {
+//   mongooseDefault.connect(mongouri, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true
+//   });
+// } catch (error) {
+//   handleError(error);
+// }
+process.on('unhandledRejection', error => {
+  console.log('unhandledRejection', error.message);
+});
+
+//creating bucket
+let bucket;
+mongooseDefault.connection.on("connected", () => {
+  var client = mongooseDefault.connections[0].client;
+  var db = mongooseDefault.connections[0].db;
+  bucket = new mongooseDefault.mongo.GridFSBucket(db, {
+    bucketName: "pdffiles"
+  });
+  console.log(bucket);
+});
+
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}));
+
+const storage = new GridFsStorage({
+  url: mongouri,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      const filename = file.originalname;
+      const fileInfo = {
+        filename: filename,
+        bucketName: "pdffiles"
+      };
+      resolve(fileInfo);
+    });
+  }
+});
+
+const upload = multer({
+  storage
+});
+
+app.get("/pdffile/:filename", (req, res) => {
+  const file = bucket
+    .find({
+      filename: req.params.filename
+    })
+    .toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404)
+          .json({
+            err: "no files exist"
+          });
+      }
+      res.set({
+        contentType: 'application/pdf',
+        'eransfer-encoding': 'gzip'
+      })
+      // console.log(res)
+      bucket.openDownloadStreamByName(req.params.filename)
+        .pipe(res);
+    });
+});
+
+app.post("/uploadFile", upload.single("file"), (req, res) => {
+  res.status(200)
+    .send("File uploaded successfully");
+});
+
 app.get('/', function (req, res) {
   res.json({ "message": "Can't get any data from this route!!!" });
 });
@@ -25,11 +108,9 @@ app.use('/users', users);
 // File upload or download routes
 app.use('/file', fileRoute);
 // categories routes
-const categoryRoute = require('./routes/categories.route')
+const categoryRoute = require('./routes/categories.route');
+const { fsync } = require('fs');
 app.use('/categories', categoryRoute);
-// pdf files upload / download routes
-const pdfFiles = require('./routes/pdfFile.route')
-app.use('/pdf', pdfFiles)
 // private route
 app.get('/favicon.ico', function (req, res) {
   res.sendStatus(204);
