@@ -103,7 +103,7 @@ const ItemPage = () => {
     }, [baseURL, id]);
 
     const downloadFile = async () => {
-        setDlding("Downloading");
+        setDlding("Downloading! Please wait");
         setDownloadStat(null);
         fetch(`${baseURL}/pdffile/${Item.documentName}`)
             .then((res) => {
