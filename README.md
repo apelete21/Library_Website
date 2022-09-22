@@ -23,7 +23,7 @@ Fullstack Library Web Application built with MERN Stack ( Mongodb, ExpressJS,Rea
 <br />
 <br />
 
-### <b>Built With</b>
+## <b>Built With</b>
 <br />
 
 -   [![Mongo DB][mongodb]][mongodb-url]
@@ -35,6 +35,16 @@ Fullstack Library Web Application built with MERN Stack ( Mongodb, ExpressJS,Rea
 <br />
 
 ## <b>Overview</b>
+
+<br />
+
+####    Link of the application : <b> [Library Website ](https://client-library.herokuapp.com/)</b>
+####    Link of the application prototype : <b>[Figma](https://www.figma.com/file/SvV6MXz4H8ms0hL9uZFOCE/Library-Project)</b>
+
+<br />
+<br />
+
+## <b>Preview</b>
 
 1. Run the following command in the client and server folders respectively
 
@@ -106,5 +116,5 @@ Koffi Apelete <b>ADZOHONOU</b> - adzohonouapelete@gmail.com
 [node-url]: https://nodejs.org/en/
 [react.js]: https://img.shields.io/badge/React.js-000000?style=for-the-badge&logo=react&logoColor=white
 [react-url]: https://reactjs.org/
-[mongodb]: https://img.shields.io/badge/Mongodb-35495E?style=for-the-badge&logo=nodedotjs&logoColor=4FC08D-brightgreen
+[mongodb]: https://img.shields.io/badge/Mongodb-35495E?style=for-the-badge&logo=mongodb&logoColor=4FC08D-brightgreen
 [mongodb-url]: https://mongodb.com/
